@@ -19,4 +19,13 @@ public class AttributesController {
 
         return "attributes";
     }
+
+    @RequestMapping("/simple")
+    public String simpleIndex(ModelMap map) {
+        map.put("thymeleafText","spring-boot");
+        map.put("number1", 2021);
+        map.put("number2", 2);
+
+        return "simple";
+    }
 }
