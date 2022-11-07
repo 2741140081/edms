@@ -5,6 +5,12 @@
   <title th:text="${title}">语法测试</title>
 </head>
 <body>
+/*
+thymeleaf 学习语法网站
+https://www.thymeleaf.org/doc/tutorials/3.0/usingthymeleaf.html#strings
+全面的官方学习工具类语法网站
+*/
+
 <h3>#strings 工具类测试</h3>
 <div th:if="${not #strings.isEmpty(testString)}">
   <p>testString 初始值:<span th:text="${testString}"/></p>
