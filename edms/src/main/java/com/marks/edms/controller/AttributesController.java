@@ -4,6 +4,10 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import java.util.Arrays;
+import java.util.Date;
+import java.util.HashMap;
+
 @Controller
 public class AttributesController {
     @RequestMapping("/attributes")
@@ -27,5 +31,22 @@ public class AttributesController {
         map.put("number2", 2);
 
         return "simple";
+    }
+
+    @RequestMapping("/complex")
+    public String complexIndex(ModelMap map) {
+        map.put("title", "Thymeleaf 语法测试");
+        map.put("testString", "Spring Boot 商城");
+        map.put("bool", true);
+        map.put("testArray", new Integer[]{2021, 2022, 2023, 2024});
+        map.put("testList", Arrays.asList("Spring", "Spring Boot", "Thymeleaf", "Mybatis", "Java"));
+        HashMap<String, String> testMap = new HashMap<>();
+        testMap.put("platform", "book");
+        testMap.put("title", "Spring Boot 商城项目实战");
+        testMap.put("author", "十三");
+        map.put("testMap", testMap);
+        map.put("testDate", new Date());
+
+        return "complex";
     }
 }
