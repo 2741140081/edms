@@ -8,8 +8,8 @@
         <collection property="roles" ofType="com.marks.edms.domain.SysRole">
             <result column="role_name" property="role_name"/>
         </collection>
-
     </resultMap>
+
     <select id="findByUserName" parameterType="String" resultMap="userMap">
         select u.*
         ,r.role_name
@@ -18,4 +18,28 @@
         LEFT JOIN marks_role r on sru.role_id=r.role_id
         where username= #{username}
     </select>
+
+    <resultMap id="UserResult" type="com.marks.edms.entity.User">
+        <result property="id" column="id"/>
+        <result property="name" column="name"/>
+        <result property="password" column="password"/>
+    </resultMap>
+
+    <select id="findAllUsers" resultMap="UserResult">
+        select id, name, password
+        from tb_user
+        order by id desc
+    </select>
+
+    <select id="insertUser" parameterType="com.marks.edms.entity.User">
+        insert into tb_user(name, password) values (#{name}, #{password})
+    </select>
+
+    <select id="updateUser" parameterType="com.marks.edms.entity.User">
+        update tb_user
+        set
+        name = #{name}, password = #{password}
+        where id = #{id}
+    </select>
+
 </mapper>

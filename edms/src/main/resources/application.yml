@@ -28,3 +28,6 @@ mybatis-plus:
   type-aliases-package: com.marks.edms.entity
   configuration:
     log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
+
+mybatis:
+  mapper-locations: classpath*:/mapper/*Mapper.xml
