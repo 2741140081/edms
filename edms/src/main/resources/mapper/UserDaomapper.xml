@@ -31,15 +31,19 @@
         order by id desc
     </select>
 
-    <select id="insertUser" parameterType="com.marks.edms.entity.User">
+    <insert id="insertUser" parameterType="com.marks.edms.entity.User">
         insert into tb_user(name, password) values (#{name}, #{password})
-    </select>
+    </insert>
 
-    <select id="updateUser" parameterType="com.marks.edms.entity.User">
+    <update id="updateUser" parameterType="com.marks.edms.entity.User">
         update tb_user
         set
         name = #{name}, password = #{password}
         where id = #{id}
-    </select>
+    </update>
+
+    <delete id="delUser" parameterType="int">
+        delete from tb_user where id = #{id}
+    </delete>
 
 </mapper>

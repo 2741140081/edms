@@ -17,17 +17,5 @@ spring:
     resources:
       static-locations: classpath:/static/
 
-mybatis-plus:
-  global-config:
-    db-config:
-      id-type: auto
-      db-type: mysql
-      table-prefix: t_
-      column-underline: true
-  mapper-locations: classpath*:/mapper/**Mapper.xml
-  type-aliases-package: com.marks.edms.entity
-  configuration:
-    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
-
 mybatis:
   mapper-locations: classpath*:/mapper/*Mapper.xml

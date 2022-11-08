@@ -22,7 +22,7 @@ public class MybatisController {
         return userDao.findAllUsers();
     }
 
-    @GetMapping("user/mybatis/insert")
+    @GetMapping("users/mybatis/insert")
     public Boolean insert(String name, String password) {
         if (StringUtils.isEmpty(name) || StringUtils.isEmpty(password)) {
             return false;
@@ -33,7 +33,7 @@ public class MybatisController {
         return userDao.insertUser(user) > 0;
     }
 
-    @GetMapping("user/mybatis/update")
+    @GetMapping("users/mybatis/update")
     public Boolean update(Integer id, String name, String password) {
         if (id == null || id < 0||StringUtils.isEmpty(name) || StringUtils.isEmpty(password)) {
             return false;
@@ -45,7 +45,7 @@ public class MybatisController {
         return userDao.updateUser(user) > 0;
     }
 
-    @GetMapping("user/mybatis/delete")
+    @GetMapping("users/mybatis/delete")
     public Boolean delete(Integer id) {
         if (id == null || id < 0) {
             return false;
