@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>验证码显示</title>
+</head>
+<body>
+    <img src="/kaptcha" onclick="this.src='/kaptcha?d=' + new Date() * 1" />
+    <br>
+    <input type="text" maxlength="5" id="code" placeholder="请输入验证码"/>
+    <button id="verify">验证</button>
+    <br>
+    <p id="verifyResult"></p>
+</body>
+<script src="https://s3.pstatp.com/cdn/expire-1-M/jquery/3.3.1/jquery.min.js"></script>
+<script src="kaptcha.js"></script>
+
+</html>
