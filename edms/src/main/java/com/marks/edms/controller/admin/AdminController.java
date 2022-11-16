@@ -50,6 +50,7 @@ public class AdminController {
             session.setAttribute("errorMsg","用户名或密码不能为空");
             return "admin/login";
         }
+        //将验证码全部转为小写,再去进行比较
         verifyCode.toLowerCase();
         String kaptchaCode = session.getAttribute("verifyCode") + "";
         if (!StringUtils.hasLength(kaptchaCode) || !verifyCode.equals(kaptchaCode)) {
