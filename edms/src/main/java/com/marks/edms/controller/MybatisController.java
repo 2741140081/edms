@@ -1,7 +1,6 @@
 package com.marks.edms.controller;
 
 import com.marks.edms.dao.UserDao;
-import com.marks.edms.entity.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
