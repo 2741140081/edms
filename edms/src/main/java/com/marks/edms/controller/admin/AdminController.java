@@ -11,4 +11,10 @@ public class AdminController {
     public String indexAll() {
         return "admin/index-all";
     }
+
+    @GetMapping("/index")
+    public String index() {
+        return "admin/index";
+    }
+
 }
