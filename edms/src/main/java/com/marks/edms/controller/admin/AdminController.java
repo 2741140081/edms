@@ -54,7 +54,6 @@ public class AdminController {
         verifyCode.toLowerCase();
         String kaptchaCode = session.getAttribute("verifyCode") + "";
         if (!StringUtils.hasLength(kaptchaCode) || !verifyCode.equals(kaptchaCode)) {
-            System.out.println(kaptchaCode + "==========>" + verifyCode);
             session.setAttribute("errorMsg","验证码错误");
             return "admin/login";
         }
