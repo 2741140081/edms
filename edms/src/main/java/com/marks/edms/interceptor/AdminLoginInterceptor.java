@@ -17,8 +17,8 @@ import java.io.IOException;
 @Component
 public class AdminLoginInterceptor implements HandlerInterceptor {
 
-    @Autowired
-    public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
+    @Override
+    public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object o) throws Exception {
         System.out.println("进入拦截器");
         String uri = request.getRequestURI();
 
@@ -35,13 +35,13 @@ public class AdminLoginInterceptor implements HandlerInterceptor {
 
     }
 
-    @Autowired
-    public void postHandle(HttpServletRequest request, HttpServletResponse response, Object handler,
-                            @Nullable ModelAndView modelAndView) throws Exception {
+    @Override
+    public void postHandle(HttpServletRequest httpServletRequest, HttpServletResponse httpServletResponse, Object o,
+                           ModelAndView modelAndView) throws Exception {
     }
 
-    @Autowired
-    public void afterCompletion(HttpServletRequest request, HttpServletResponse response, Object handler,
-                                @Nullable Exception ex) throws Exception {
+    @Override
+    public void afterCompletion(HttpServletRequest httpServletRequest, HttpServletResponse httpServletResponse, Object o,
+                                Exception e) throws Exception {
     }
 }
