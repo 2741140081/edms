@@ -5,12 +5,10 @@ import com.marks.edms.service.AdminUserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.util.StringUtils;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 @Controller
@@ -70,6 +68,64 @@ public class AdminController {
         }
 
         return "admin/login";
+    }
+
+    @GetMapping("/profile")
+    public String profile(HttpServletRequest request) {
+        Integer loginUserId = (Integer) request.getSession().getAttribute("loginUserId");
+        System.out.println(loginUserId);
+        AdminUser adminUser = adminUserService.getUserDetailById(loginUserId);
+        if (adminUser == null) {
+            return "admin/login";
+        }
+        request.setAttribute("path", "profile");
+        request.setAttribute("loginUserName", adminUser.getLoginUserName());
+        request.setAttribute("nickName", adminUser.getNickName());
+
+        return "/admin/profile";
+    }
+
+    @PostMapping("/profile/password")
+    @ResponseBody
+    public String passwordUpdate(HttpServletRequest request, @RequestParam("originalPassword") String originalPassowrd, @RequestParam("newPassword") String newPassword) {
+        if (!StringUtils.hasLength(originalPassowrd)) {
+            return "参数不能为空";
+        }
+        Integer loginUserId = (Integer) request.getSession().getAttribute("loginUserId");
+
+        if (adminUserService.updatePassword(loginUserId, originalPassowrd, newPassword)) {
+            request.getSession().removeAttribute("loginUserId");
+            request.getSession().removeAttribute("loginUser");
+            request.getSession().removeAttribute("errorMsg");
+            return "success";
+        } else {
+            return "修改失败";
+        }
+
+    }
+
+    @PostMapping("/profile/name")
+    @ResponseBody
+    public String nameUpdate(HttpServletRequest request, @RequestParam("loginUserName") String loginUserName, @RequestParam("nickName") String nickName) {
+        if (!StringUtils.hasLength(loginUserName) || !StringUtils.hasLength(nickName) ) {
+            return "参数不能为空";
+        }
+        Integer loginUserId = (Integer) request.getSession().getAttribute("loginUserId");
+
+        if (adminUserService.updateName(loginUserId, loginUserName, nickName)) {
+            return "success";
+        } else {
+            return "修改失败";
+        }
+
+    }
+
+    @GetMapping("/logout")
+    public String logout(HttpServletRequest request) {
+        request.getSession().removeAttribute("loginUserId");
+        request.getSession().removeAttribute("loginUser");
+        request.getSession().removeAttribute("errorMsg");
+        return "/admin/login";
     }
 
 }

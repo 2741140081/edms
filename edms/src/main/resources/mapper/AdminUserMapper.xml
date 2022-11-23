@@ -18,4 +18,39 @@
         from tb_newbee_mall_admin_user
         where login_user_name = #{userName, jdbcType=VARCHAR} and login_password = #{password, jdbcType=VARCHAR} and locked = 0
     </select>
+
+    <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List" />
+        from tb_newbee_mall_admin_user
+        where admin_user_id = #{adminUserId,jdbcType=INTEGER}
+    </select>
+
+    <update id="updateByPrimaryKeySelective" parameterType="com.marks.edms.entity.AdminUser">
+        update tb_newbee_mall_admin_user
+        <set>
+            <if test="loginUserName != null">
+                login_user_name = #{loginUserName},
+            </if>
+            <if test="loginPassword != null">
+                login_password = #{loginPassword},
+            </if>
+            <if test="nickName != null">
+                nick_name = #{nickName},
+            </if>
+            <if test="locked != null">
+                locked = #{locked},
+            </if>
+        </set>
+        where admin_user_id = #{adminUserId}
+    </update>
+
+    <update id="updateByPrimaryKey" parameterType="com.marks.edms.entity.AdminUser">
+        update tb_newbee_mall_admin_user
+        set login_user_name = #{loginUserName,jdbcType=VARCHAR},
+        login_password = #{loginPassword,jdbcType=VARCHAR},
+        nick_name = #{nickName,jdbcType=VARCHAR},
+        locked = #{locked,jdbcType=TINYINT}
+        where admin_user_id = #{adminUserId,jdbcType=INTEGER}
+    </update>
 </mapper>
