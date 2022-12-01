@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.marks.edms.dao.CarouselMapper">
+    <resultMap id="BaseResultMap" type="com.marks.edms.entity.Carousel">
+        <id column="carousel_id" jdbcType="INTEGER" property="carouselId"></id>
+        <result column="carousel_url" jdbcType="varchar" property="carouselUrl"></result>
+        <result column="redirect_url" jdbcType="varchar" property="redirectUrl"></result>
+
+        <result column="carousel_rank" jdbcType="integer" property="redirectUrl"></result>
+        <result column="carousel_url" jdbcType="varchar" property="carouselUrl"></result>
+        <result column="carousel_url" jdbcType="varchar" property="carouselUrl"></result>
+    </resultMap>
+</mapper>
