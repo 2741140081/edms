@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<header th:replace="admin/header::header-fragment"></header>
+<style>
+  .ui-jqgrid tr.jqgrow td {
+    white-space: normal !important;
+    height: auto;
+    vertical-align: text-top;
+    padding-top: 2px;
+  }
+</style>
+<body class="hold-transition sidebar-mini">
+<div class="wrapper">
+  <!-- 引入页面头header-fragment -->
+  <div th:replace="admin/header::header-nav"></div>
+  <!-- 引入工具栏sidebar-fragment -->
+  <div th:replace="admin/sidebar::sidebar-fragment(${path})"></div>
+  <!-- Content Wrapper. Contains page content -->
+  <div class="content-wrapper">
+    <!-- Content Header (Page content) -->
+    <div class="content-header">
+      <div class="container-fluid"></div>
+      <!-- /.container-fluid -->
+    </div>
+    <!--  Main content -->
+    <div class="content">
+      <div class="container-fluid">
+        <div class="card card-primary card-outline">
+
+          <div class="card-header">
+            <h3 class="card-title">轮播图管理</h3>
+          </div>
+          <!-- /.card-body start-->
+          <div class="card-body">
+              <div class="grid-btn">
+                <button class="btn btn-info" onclick="carouselAdd()">
+                  <i class="fa fa-plus">&nbsp;新增</i>
+                </button>
+
+                <button class="btn btn-info" onclick="carouselEdit()">
+                  <i class="fa fa-pencil-square-o">&nbsp;修改</i>
+                </button>
+
+                <button class="btn btn-danger" onclick="deleteCarousel()">
+                  <i class="fa fa-trash-o">&nbsp;删除</i>
+                </button>
+              </div>
+              轮播图管理页面
+            <!-- /.card-body end-->
+          </div>
+
+        </div>
+      </div>
+    </div>
+    <!--  Main content -->
+  </div>
+
+  <div th:replace="admin/footer::footer-fragment"></div>
+</div>
+
+<script th:src="@{/admin/plugins/jQueryUI/jquery-ui.min.js}"></script>
+<!--  jQuery -->
+<script th:src="@{/admin/plugins/jquery/jquery.min.js}"></script>
+<!--  BootStrap 4 -->
+<script th:src="@{/admin/plugins/bootstrap/js/bootstrap.bundle.min.js}"></script>
+<!--  AdminLTE App  -->
+<script th:src="@{/admin/dist/js/adminlte.min.js}"></script>
+</body>
+</html>
