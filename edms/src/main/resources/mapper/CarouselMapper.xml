@@ -7,7 +7,203 @@
         <result column="redirect_url" jdbcType="varchar" property="redirectUrl"></result>
 
         <result column="carousel_rank" jdbcType="integer" property="redirectUrl"></result>
-        <result column="carousel_url" jdbcType="varchar" property="carouselUrl"></result>
-        <result column="carousel_url" jdbcType="varchar" property="carouselUrl"></result>
+        <result column="is_deleted" jdbcType="tinyint" property="isDeleted"></result>
+        <result column="create_time" jdbcType="timestamp" property="createTime"></result>
+        <result column="create_user" jdbcType="integer" property="createUser"></result>
+        <result column="update_time" jdbcType="timestamp" property="updateTime"></result>
+        <result column="update_user" jdbcType="integer" property="updateUser"></result>
     </resultMap>
+
+    <sql id="Base_Column_List">
+        carousel_id, carousel_url, redirect_url, carousel_rank, is_deleted, create_time,
+        create_user, update_time, update_user
+    </sql>
+
+    <select id="findCarouselList" parameterType="Map" resultType="BaseResultMap">
+        select
+        <include refid="Base_Column_List"></include>
+        from tb_newbee_mall_carousel
+        where id_deleted = 0
+        order by carousel_rank desc
+        <if test="start !=null and limit != null">
+            limit #{start},#{limit}
+        </if>
+    </select>
+
+    <select id="getTotalCarousels" parameterType="Map" resultType="int">
+        select count(*) from tb_newbee_mall_carousel
+        where is_deleted = 0
+    </select>
+
+    <select id="selectByPrimaryKey" parameterType="Integer" resultType="BaseResultMap">
+        select
+        <include refid="Base_Column_List"></include>
+        from tb_newbee_mall_carousel
+        where carousel_id = #{carouselId, jdbcType=integer}
+    </select>
+
+    <select id="findCarouselByNum" parameterType="Integer" resultType="BaseResultMap">
+        select
+        <include refid="Base_Column_List"></include>
+        from tb_newbee_mall_carousel
+        where id_deleted = 0
+        order by carousel_rank desc
+        limit #{number}
+    </select>
+
+    <delete id="deleteByPrimaryKey" parameterType="Integer">
+        delete from tb_newbee_mall_carousel
+        where carousel_id = #{carouselId, jdbcType=integer}
+    </delete>
+
+    <insert id="insert" parameterType="com.marks.edms.entity.Carousel">
+        insert into tb_newbee_mall_carousel (carousel_id, carousel_url,
+        redirect_url, carousel_rank, is_deleted, create_time,
+        create_user, update_time, update_user)
+        values (#{carouselId, jdbcType=integer}, #{carouselUrl, jdbcType=varchar},
+        #{redirectUrl, jdbcType=varchar}, #{carouselRank, jdbcType=integer}, #{isDeleted, jdbcType=tinyint},
+        #{createTime, jdbcType=timestamp}, #{createUser, jdbcType=integer}, #{updateTime, jdbcType=timestamp},
+        #{updateUser, jdbcType=integer})
+    </insert>
+
+    <insert id="insertSelective" parameterType="com.marks.edms.entity.Carousel">
+        insert into tb_newbee_mall_carousel
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="carouselId != null">
+                carousel_id,
+            </if>
+
+            <if test="carouselUrl != null">
+                carousel_url,
+            </if>
+
+            <if test="redirectUrl != null">
+                redirect_url,
+            </if>
+
+            <if test="carouselRank != null">
+                carousel_rank,
+            </if>
+
+            <if test="isDeleted != null">
+                is_deleted,
+            </if>
+
+            <if test="createTime != null">
+                create_time,
+            </if>
+
+            <if test="createUser != null">
+                create_user,
+            </if>
+
+            <if test="updateTime != null">
+                update_time,
+            </if>
+
+            <if test="updateUser != null">
+                update_user,
+            </if>
+        </trim>
+
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="carouselId != null">
+                #{carouselId, jdbcType=integer},
+            </if>
+
+            <if test="carouselUrl != null">
+                #{carouselUrl, jdbcType=varchar},
+            </if>
+
+            <if test="redirectUrl != null">
+                #{redirectUrl, jdbcType=varchar},
+            </if>
+
+            <if test="carouselRank != null">
+                #{carouselRank, jdbcType=integer},
+            </if>
+
+            <if test="isDeleted != null">
+                #{isDeleted, jdbcType=tinyint},
+            </if>
+
+            <if test="createTime != null">
+                #{createTime, jdbcType=timestamp},
+            </if>
+
+            <if test="createUser != null">
+                #{createUser, jdbcType=integer},
+            </if>
+
+            <if test="updateTime != null">
+                #{updateTime, jdbcType=timestamp},
+            </if>
+
+            <if test="updateUser != null">
+                #{updateUser, jdbcType=integer},
+            </if>
+        </trim>
+    </insert>
+
+    <update id="updateByPrimaryKeySelective" parameterType="com.marks.edms.entity.Carousel">
+        update tb_newbee_mall_carousel
+        <trim prefix="set" suffixOverrides=",">
+            <if test="carouselUrl != null">
+                carousel_url = #{carouselUrl, jdbcType=varchar},
+            </if>
+
+            <if test="redirectUrl != null">
+                redirect_url = #{redirectUrl, jdbcType=varchar},
+            </if>
+
+            <if test="carouselRank != null">
+                carousel_rank = #{carouselRank, jdbcType=integer},
+            </if>
+
+            <if test="isDeleted != null">
+                is_deleted = #{isDeleted, jdbcType=tinyint},
+            </if>
+
+            <if test="createTime != null">
+                create_time = #{createTime, jdbcType=timestamp},
+            </if>
+
+            <if test="createUser != null">
+                create_user = #{createUser, jdbcType=integer},
+            </if>
+
+            <if test="updateTime != null">
+                update_time = #{updateTime, jdbcType=timestamp},
+            </if>
+
+            <if test="updateUser != null">
+                update_user = #{updateUser, jdbcType=integer},
+            </if>
+        </trim>
+        where carousel_id = #{carouselId,jdbcType=integer}
+
+    </update>
+
+    <update id="updateByPrimaryKey" parameterType="com.marks.edms.entity.Carousel">
+        update tb_newbee_mall_carousel
+        set carousel_url = #{carouselUrl, jdbcType=varchar},
+        redirect_url = #{redirectUrl, jdbcType=varchar},
+        carousel_rank = #{carouselRank, jdbcType=integer},
+        is_deleted = #{isDeleted, jdbcType=tinyint},
+        create_time = #{createTime, jdbcType=timestamp},
+        create_user = #{createUser, jdbcType=integer},
+        update_time = #{updateTime, jdbcType=timestamp},
+        update_user = #{updateUser, jdbcType=integer}
+        where carousel_id = #{carouselId,jdbcType=integer}
+    </update>
+
+    <update id="deleteBatch">
+        update tb_newbee_mall_carousel
+        set is_deleted=1,update_time = now() where carousel_id in
+        <foreach item="id" collection="array" open="(" separator="," close=")">
+            #{id}
+        </foreach>
+    </update>
+
+
 </mapper>
