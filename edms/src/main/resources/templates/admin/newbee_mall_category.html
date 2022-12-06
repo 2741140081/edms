@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<header th:header="admin/header::header-fragment"></header>
+<style>
+
+</style>
+<body class="hold-transition sidebar-mini">
+<div class="wrapper">
+    <div th:replace="admin/header-nav"></div>
+    <div th:replace="admin/sidebar::sidebar-fragment(${path})"></div>
+    <div class="content-wrapper">
+        <div class="content-header">
+            <div class="container-fluid">
+
+            </div>
+        </div>
+
+        <div class="content">
+            <div class="container-fluid">
+                <div class="card card-primary card-outline">
+                    <div class="card-header">
+                        <h3 class="card-title">分类管理</h3>
+                    </div>
+
+                    <div class="card-body">
+                        <div class="grid-btn">
+                            <button class="btn btn-info" onclick="categoryAdd()">
+                                <i class="fa fa-plus"></i>&nbsp;新增
+                            </button>
+
+                            <button class="btn btn-info" onclick="categoryEdit()">
+                                <i class="fa fa-pencil-square-o"></i>&nbsp;修改
+                            </button>
+
+                            <button class="btn btn-danger" onclick="deleteCategory()">
+                                <i class="fa fa-trash-o"></i>&nbsp;删除
+                            </button>
+
+                            <button class="btn  btn-info" onclick="categoryManager()">
+                                <i class="fa fa-list"></i>&nbsp;下级分类管理
+                            </button>
+
+                            <button class="btn btn-info" onclick="categoryBack()">
+                                <i class="fa fa-backward"></i>&nbsp;返回
+                            </button>
+                        </div>
+                        <br>
+                        <table id="jqGrid" class="table table-bordered">
+
+                        </table>
+                        <div id="jqGridPager"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="content">
+
+        </div>
+    </div>
+</div>
+
+</body>
+</html>

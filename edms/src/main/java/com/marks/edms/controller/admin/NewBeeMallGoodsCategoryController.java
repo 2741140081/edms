@@ -11,9 +11,17 @@ import javax.servlet.http.HttpServletRequest;
 @RequestMapping("/admin")
 public class NewBeeMallGoodsCategoryController {
     @GetMapping("/categories")
-    public String category(HttpServletRequest request, @RequestParam("parentId") String parentId, @RequestParam("categoryLevel") String categoryLevel,
-                           @RequestParam("backParentId") String backParentId){
-        return null;
+    public String category(HttpServletRequest request, @RequestParam("parentId") Long parentId, @RequestParam("categoryLevel") Byte categoryLevel,
+                           @RequestParam("backParentId") Long backParentId){
+        if (categoryLevel == null || categoryLevel < 1 || categoryLevel > 3) {
+            return "error/error_5xx";
+        }
+
+        request.setAttribute("path","newbee_mall_category");
+        request.setAttribute("parentId",parentId);
+        request.setAttribute("backParentId",backParentId);
+        request.setAttribute("categoryLevel",categoryLevel);
+        return "admin/newbee_mall_category";
     }
 
 
