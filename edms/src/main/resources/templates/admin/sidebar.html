@@ -28,14 +28,22 @@
                     </a>
                 </li>
 
+                <li class="nav-header">管理模块</li>
                 <li class="nav-item">
-                    <!-- @{path}=='category'?'nav-link active':'nav-link',当获取的path值为category时，使得该标签的class name为nav-link active
-                         这样做的目的是为了在进行标签切换中，选中该标签，例如Dashboard选项卡和category选项卡被选中状态 -->
-                    <a th:href="@{/admin/category}" th:class="@{path}=='category'?'nav-link active':'nav-link'">
-                        <i class="nav-icon fa fa-bookmark"></i>
-                        <p>category页面</p>
+                    <a th:href="@{/admin/categories?parentId=0&categoryLevel=1&backParentId=0}" th:class="@{path}=='newbee_mall_category'?'nav-link active':'nav-link'">
+                        <i class="fa fa-list-alt nav-icon" aria-hidden="true"></i>
+                        <p>分类管理</p>
                     </a>
                 </li>
+
+<!--                <li class="nav-item">-->
+<!--                    &lt;!&ndash; @{path}=='category'?'nav-link active':'nav-link',当获取的path值为category时，使得该标签的class name为nav-link active-->
+<!--                         这样做的目的是为了在进行标签切换中，选中该标签，例如Dashboard选项卡和category选项卡被选中状态 &ndash;&gt;-->
+<!--                    <a th:href="@{/admin/category}" th:class="@{path}=='category'?'nav-link active':'nav-link'">-->
+<!--                        <i class="nav-icon fa fa-bookmark"></i>-->
+<!--                        <p>category页面</p>-->
+<!--                    </a>-->
+<!--                </li>-->
 
                 <li class="nav-header">系统管理</li>
                 <li class="nav-item">
