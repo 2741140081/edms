@@ -6,11 +6,15 @@ import java.util.Set;
 
 public class LeetCode1805 {
     public static void main(String[] args) {
-        String word = "a123bc34d008e8f34";
-        String word1 = "0000001110000000111";
-        String str = word1.replaceFirst("^0*","");
+//        String word = "a123bc34d008e8f34";
+//        String word1 = "0000001110000000111";
+//        String str = word1.replaceFirst("^0*","");
+//
+//        numDifferentInteger(word);
 
-        numDifferentInteger(word);
+        Long sizeTemp = new Long(10)*1024*1024;
+        System.out.println(sizeTemp);
+
     }
 
     private static int numDifferentInteger(String word) {
