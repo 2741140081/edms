@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.marks.edms.dao.GoodsCategoryMapper">
+    <resultMap id="BaseResultMap" type="com.marks.edms.entity.GoodsCategory">
+        <id column="category_id" jdbcType="INTEGER" property="categoryId"/>
+        <result column="category_level" jdbcType="TINYINT" property="categoryLevel"/>
+        <result column="parent_id" jdbcType="INTEGER" property="parentId"/>
+        <result column="category_name" jdbcType="VARCHAR" property="categoryName"/>
+
+        <result column="category_rank" jdbcType="INTEGER" property="categoryRank"/>
+        <result column="is_deleted" jdbcType="TINYINT" property="isDeleted"/>
+        <result column="create_time" jdbcType="TIMESTAMP" property="createTime"/>
+        <result column="create_user" jdbcType="INTEGER" property="createUser"/>
+        <result column="update_time" jdbcType="TIMESTAMP" property="updateTime"/>
+        <result column="update_user" jdbcType="INTEGER" property="updateUser"/>
+    </resultMap>
+
+    <sql id="Base_Column_List">
+        category_id, category_level, parent_id, category_name, category_rank,
+        is_deleted, create_time, update_time, update_user
+    </sql>
+<!--
+1.<where> 标签的作用：添加where关键字，同时去掉多余的and
+2.if 标签和 where 标签不一定必须同时使用，按实际需要进行使用；
+3.mybatis就会将where标签中拼装的sql，多出来的and或者or去掉，where只会去掉第一个多出来的and或者or。
+-->
+    <select id="findGoodsCategoryList" parameterType="Map" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"></include>
+        from tb_newbee_mall_goods_category
+        <where>
+            <if test="categoryLevel != null and categoryLevel != ''">
+                category_level = #{categoryLevel}
+            </if>
+            <if test="parentId != null and parentId != ''">
+                parent_id = #{parentId}
+            </if>
+            and is_deleted = 0
+        </where>
+        order by category_rank desc
+        <if test="start !=null and limit != null">
+            limit #{start},#{limit}
+        </if>
+    </select>
+
+    <select id="getTotalGoodsCategories" parameterType="Map" resultType="int">
+        select count(*) from tb_newbee_mall_goods_category
+        <where>
+            <if test="categoryLevel != null and categoryLevel != ''">
+                category_level = #{categoryLevel}
+            </if>
+            <if test="parentId != null and parentId != ''">
+                parent_id = #{parentId}
+            </if>
+            and is_deleted = 0
+        </where>
+    </select>
+
+    <select id="selectByPrimaryKey" parameterType="Long" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"></include>
+        from tb_newbee_mall_goods_category
+        where category_id = #{categoryId, jdbcType=INTEGER} and is_deleted = 0
+    </select>
+
+    <select id="selectByLevelAndName" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"></include>
+        from tb_newbee_mall_goods_category
+        where category_name = #{categoryName, jdbcType=VARCHAR} and category_level = #{categoryLevel, jdbcType=TINYINT}
+        and is_deleted = 0 limit 1
+    </select>
+
+    <select id="selectByLevelAndParentIdsAndNumber" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"></include>
+        from tb_newbee_mall_goods_category
+        where
+        <foreach collection="parentIds" item="parentId" open="(" separator="," close=")">
+
+        </foreach>
+        and category_level = #{categoryLevel, jdbcType=TINYINT}
+        and is_deleted = 0 limit 1
+    </select>
+
+
+</mapper>
