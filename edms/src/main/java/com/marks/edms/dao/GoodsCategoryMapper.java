@@ -2,10 +2,12 @@ package com.marks.edms.dao;
 
 import com.marks.edms.entity.GoodsCategory;
 import com.marks.edms.util.PageQueryUtil;
+import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
 
+@Mapper
 public interface GoodsCategoryMapper {
     int deleteByPrimaryKey(Long categoryId);
 
