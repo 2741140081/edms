@@ -12,6 +12,7 @@ import java.util.List;
 
 @Service
 public class NewBeeMallCategoryServiceImpl implements NewBeeMallCategoryService {
+
     @Autowired
     private GoodsCategoryMapper goodsCategoryMapper;
 
