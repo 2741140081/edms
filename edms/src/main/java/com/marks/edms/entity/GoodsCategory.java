@@ -23,7 +23,7 @@ public class GoodsCategory {
     private Integer createUser;
 
     @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss", timezone = "GMT+8")
-    private Date updateTIme;
+    private Date updateTime;
 
     private Integer updateUser;
 
@@ -91,12 +91,12 @@ public class GoodsCategory {
         this.createUser = createUser;
     }
 
-    public Date getUpdateTIme() {
-        return updateTIme;
+    public Date getUpdateTime() {
+        return updateTime;
     }
 
-    public void setUpdateTIme(Date updateTIme) {
-        this.updateTIme = updateTIme;
+    public void setUpdateTime(Date updateTIme) {
+        this.updateTime = updateTIme;
     }
 
     public Integer getUpdateUser() {

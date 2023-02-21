@@ -1,5 +1,7 @@
 package com.marks.edms.interceptor;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.lang.Nullable;
 import org.springframework.stereotype.Component;
@@ -16,20 +18,24 @@ import java.io.IOException;
 
 @Component
 public class AdminLoginInterceptor implements HandlerInterceptor {
+    private static final Logger LOG = LoggerFactory.getLogger(AdminLoginInterceptor.class);
 
     @Override
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object o) throws Exception {
-        System.out.println("进入拦截器");
+//        System.out.println("进入拦截器");
+        LOG.info("进入拦截器");
         String uri = request.getRequestURI();
 
         if (uri.startsWith("/admin") && null == request.getSession().getAttribute("loginUser")) {
             request.getSession().setAttribute("errorMsg", "请登录");
             response.sendRedirect(request.getContextPath() + "/admin/login");
-            System.out.println("未登录，拦截成功");
+//            System.out.println("未登录，拦截成功");
+            LOG.info("未登录，拦截成功");
             return false;
         }else {
             request.getSession().removeAttribute("errorMsg");
-            System.out.println("已经登录，放行");
+//            System.out.println("已经登录，放行");
+            LOG.info("已经登录，放行");
             return true;
         }
 
