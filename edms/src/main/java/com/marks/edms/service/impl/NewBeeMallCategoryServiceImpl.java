@@ -8,9 +8,7 @@ import com.marks.edms.util.PageQueryUtil;
 import com.marks.edms.util.PageResult;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.util.CollectionUtils;
 
-import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 

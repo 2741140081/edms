@@ -16,8 +16,8 @@ public class DocumentDefinition {
         char[] chars_637 = str_637.toCharArray();
         char[] chars_625 = str_625.toCharArray();
         char[] chars_360 = str_360.toCharArray();
-//        printSomething(chars_637);
-        printSomething(chars_625);
+        printSomething(chars_637);
+//        printSomething(chars_625);
 //        printSomething(chars_360);
 
     }
