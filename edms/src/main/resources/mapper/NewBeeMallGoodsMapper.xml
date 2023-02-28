@@ -25,6 +25,16 @@
         <result column="goods_detail_content" jdbcType="LONGVARCHAR" property="goodsDetailContent"></result>
     </resultMap>
 
+    <sql id="Base_Column_list">
+        goods_id, goods_name, goods_intro, goods_category_id, goods_cover_img,
+        goods_carousel, original_price, selling_price, stock_num, tag, goods_sell_status,
+        create_time, create_user, update_time, update_user, goods_detail_content
+    </sql>
+
+    <sql id="Blod_Column_list">
+        goods_detail_content
+    </sql>
+
     <insert id="insertSelective" parameterType="com.marks.edms.entity.NewBeeMallGoods">
         insert into tb_newbee_mall_goods_info
         <trim prefix="(" suffix=")" suffixOverrides=",">
@@ -159,6 +169,14 @@
             </if>
         </trim>
     </insert>
+
+    <select id="selectByPrimaryKey" parameterType="Long" resultMap="ResultMapWithBLOBs">
+        select
+        <include refid="Base_Column_list"></include>,
+        <include refid="Blod_Column_list"></include>
+        from tb_newbee_mall_goods_info
+        where goods_id = #{goodsId}
+    </select>
 
 
 </mapper>

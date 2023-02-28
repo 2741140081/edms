@@ -7,4 +7,6 @@ import org.apache.ibatis.annotations.Mapper;
 public interface NewBeeMallGoodsMapper {
 
     int insertSelective(NewBeeMallGoods record);
+
+    NewBeeMallGoods selectByPrimaryKey(Long goodsId);
 }

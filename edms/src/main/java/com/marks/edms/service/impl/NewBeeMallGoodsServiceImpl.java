@@ -20,4 +20,9 @@ public class NewBeeMallGoodsServiceImpl implements NewBeeMallGoodsService {
         }
         return ServiceResultEnum.DB_ERROR.getResult();
     }
+
+    @Override
+    public NewBeeMallGoods getNewBeeMallGoodsById(Long goodsId) {
+        return goodsMapper.selectByPrimaryKey(goodsId);
+    }
 }
