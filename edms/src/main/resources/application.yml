@@ -19,6 +19,12 @@ spring:
 
 mybatis:
   mapper-locations: classpath*:/mapper/*Mapper.xml
+    # 配置XML映射文件中指定的实体类别名路径
+  type-aliases-package: com.marks.edms.entity
+  configuration:
+    #springboot开启mybatis驼峰命名匹配映射
+    map-underscore-to-camel-case: true
+    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
 
 #  %d{HH:mm:ss.SSS}——日志输出时间
 #  %thread——输出日志的进程名字，这在Web应用以及异步任务处理中很有用

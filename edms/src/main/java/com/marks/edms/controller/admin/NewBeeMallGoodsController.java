@@ -169,5 +169,33 @@ public class NewBeeMallGoodsController {
         return "/admin/newbee_mall_goods_edit";
     }
 
+    @RequestMapping(value = "/goods/update", method = RequestMethod.POST)
+    @ResponseBody
+    public Result update(HttpServletRequest request, @RequestBody NewBeeMallGoods goods) {
+        Integer loginUserId = (Integer) request.getSession().getAttribute("loginUserId");
+        goods.setUpdateUser(loginUserId);
+        if (!StringUtils.hasLength(goods.getGoodsName())
+                || !StringUtils.hasLength(goods.getGoodsIntro())
+                || !StringUtils.hasLength(goods.getTag())
+                || Objects.isNull(goods.getOriginalPrice())
+                || Objects.isNull(goods.getSellingPrice())
+                || Objects.isNull(goods.getStockNum())
+                || Objects.isNull(goods.getGoodsCategoryId())
+                || Objects.isNull(goods.getGoodsSellStatus())
+                || !StringUtils.hasLength(goods.getGoodsCoverImg())
+                || !StringUtils.hasLength(goods.getGoodsDetailContent())) {
+            return ResultGenerator.genFailResult("参数异常");
+        }
+
+        String result = newBeeMallGoodsService.updateNewBeeMallGoods(goods);
+
+        if (ServiceResultEnum.SUCCESS.getResult().equals(result)) {
+            return ResultGenerator.genSuccessResult();
+        }else {
+            return ResultGenerator.genFailResult(result);
+        }
+
+    }
+
 
 }

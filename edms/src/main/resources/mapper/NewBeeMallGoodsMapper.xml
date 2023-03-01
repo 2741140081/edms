@@ -178,5 +178,71 @@
         where goods_id = #{goodsId}
     </select>
 
+    <update id="updateByPrimaryKeySelective" parameterType="com.marks.edms.entity.NewBeeMallGoods">
+        update tb_newbee_mall_goods_info
+        <set>
+            <if test="goodsName != null">
+                goods_name = #{goodsName, jdbcType=VARCHAR},
+            </if>
+
+            <if test="goodsIntro != null">
+                goods_intro = #{goodsIntro, jdbcType=VARCHAR},
+            </if>
+
+            <if test="goodsCategoryId != null">
+                goods_category_id = #{goodsCategoryId, jdbcType=BIGINT},
+            </if>
+
+            <if test="goodsCoverImg != null">
+                goods_cover_img = #{goodsCoverImg, jdbcType=VARCHAR},
+            </if>
+
+            <if test="goodsCarousel != null">
+                goods_carousel = #{goodsCarousel, jdbcType=VARCHAR},
+            </if>
+
+            <if test="originalPrice != null">
+                original_price = #{originalPrice, jdbcType=BIGINT},
+            </if>
+
+            <if test="sellingPrice != null">
+                selling_price = #{sellingPrice, jdbcType=BIGINT},
+            </if>
+
+            <if test="stockNum != null">
+                stock_num = #{stockNum, jdbcType=BIGINT},
+            </if>
+
+            <if test="tag != null">
+                tag = #{tag, jdbcType=VARCHAR},
+            </if>
+
+            <if test="goodsSellStatus != null">
+                goods_sell_status = #{goodsSellStatus, jdbcType=TINYINT},
+            </if>
+
+            <if test="createTime != null">
+                create_time = #{createTime, jdbcType=TIMESTAMP},
+            </if>
+
+            <if test="createUser != null">
+                create_user = #{createUser, jdbcType=INTEGER},
+            </if>
+
+            <if test="updateTime != null">
+                update_time = #{updateTime, jdbcType=TIMESTAMP},
+            </if>
+
+            <if test="updateUser != null">
+                update_user = #{updateUser, jdbcType=INTEGER},
+            </if>
+
+            <if test="goodsDetailContent != null">
+                goods_detail_content = #{goodsDetailContent, jdbcType=LONGVARCHAR},
+            </if>
+        </set>
+        where goods_id = #{goodsId, jdbcType=BIGINT}
+    </update>
+
 
 </mapper>

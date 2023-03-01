@@ -8,4 +8,6 @@ public interface NewBeeMallGoodsService {
     String saveNewBeeMallGoods(NewBeeMallGoods goods);
 
     NewBeeMallGoods getNewBeeMallGoodsById(Long goodsId);
+
+    String updateNewBeeMallGoods(NewBeeMallGoods goods);
 }

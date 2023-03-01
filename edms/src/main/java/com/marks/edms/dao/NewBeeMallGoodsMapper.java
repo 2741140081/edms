@@ -9,4 +9,6 @@ public interface NewBeeMallGoodsMapper {
     int insertSelective(NewBeeMallGoods record);
 
     NewBeeMallGoods selectByPrimaryKey(Long goodsId);
+
+    int updateByPrimaryKeySelective(NewBeeMallGoods goods);
 }
