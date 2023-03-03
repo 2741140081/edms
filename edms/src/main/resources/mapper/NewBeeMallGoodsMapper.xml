@@ -244,5 +244,26 @@
         where goods_id = #{goodsId, jdbcType=BIGINT}
     </update>
 
+    <select id="findNewBeeMallGoodsList" parameterType="Map" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_list"></include>
+        from tb_newbee_mall_goods_info
+        order by goods_id desc
+        <if test="start != null and limit != null">
+            limit #{start}, #{limit}
+        </if>
+    </select>
+
+    <select id="getTotalNewBeeMallGoods" resultType="int">
+        select count(*) from tb_newbee_mall_goods_info
+    </select>
+
+    <update id="batchUpdateSellStatus">
+        update tb_newbee_mall_goods_info set goods_sell_status = #{sellStatus, jdbcType=TINYINT}
+        where good_id in
+        <foreach collection="goodsId" item="id" open="(" separator="," close=")">
+            #{id, jdbcType=BIGINT}
+        </foreach>
+    </update>
 
 </mapper>

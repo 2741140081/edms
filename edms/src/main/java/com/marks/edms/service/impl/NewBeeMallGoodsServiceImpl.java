@@ -4,10 +4,14 @@ import com.marks.edms.controller.common.ServiceResultEnum;
 import com.marks.edms.dao.NewBeeMallGoodsMapper;
 import com.marks.edms.entity.NewBeeMallGoods;
 import com.marks.edms.service.NewBeeMallGoodsService;
+import com.marks.edms.util.PageQueryUtil;
+import com.marks.edms.util.PageResult;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.Date;
+import java.util.List;
+import java.util.Objects;
 
 @Service
 public class NewBeeMallGoodsServiceImpl implements NewBeeMallGoodsService {
@@ -46,4 +50,31 @@ public class NewBeeMallGoodsServiceImpl implements NewBeeMallGoodsService {
         }
         return ServiceResultEnum.DB_ERROR.getResult();
     }
+
+    /**
+     * @param pageQueryUtil
+     * @return
+     */
+    @Override
+    public PageResult getNewBeeMallGoodsPage(PageQueryUtil pageQueryUtil) {
+        List<NewBeeMallGoods> newBeeMallGoodsList = goodsMapper.findNewBeeMallGoodsList(pageQueryUtil);
+        int totalNewBeeMallGoods = goodsMapper.getTotalNewBeeMallGoods(pageQueryUtil);
+        PageResult pageResult = new PageResult(totalNewBeeMallGoods, pageQueryUtil.getLimit(), pageQueryUtil.getPage(), newBeeMallGoodsList);
+        return pageResult;
+    }
+
+    /**
+     * @param goodIds
+     * @param sellStatus
+     * @return
+     */
+    @Override
+    public Boolean batchUpdateSellStatus(Long[] goodIds, int sellStatus) {
+        if (goodIds.length < 1 || Objects.isNull(sellStatus)) {
+            return false;
+        }
+        return goodsMapper.batchUpdateSellStatus(goodIds, sellStatus) > 0;
+    }
+
+
 }

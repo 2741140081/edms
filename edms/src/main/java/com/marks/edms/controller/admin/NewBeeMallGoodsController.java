@@ -1,16 +1,16 @@
 package com.marks.edms.controller.admin;
 
+import com.marks.edms.common.Constants;
 import com.marks.edms.common.NewBeeMallCategoryLevelEnum;
 import com.marks.edms.controller.common.ServiceResultEnum;
 import com.marks.edms.entity.GoodsCategory;
 import com.marks.edms.entity.NewBeeMallGoods;
 import com.marks.edms.service.NewBeeMallCategoryService;
 import com.marks.edms.service.NewBeeMallGoodsService;
-import com.marks.edms.util.NewBeeMallUtils;
-import com.marks.edms.util.Result;
-import com.marks.edms.util.ResultGenerator;
+import com.marks.edms.util.*;
 import org.springframework.stereotype.Controller;
 import org.springframework.util.CollectionUtils;
+import org.springframework.util.ObjectUtils;
 import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.*;
 
@@ -19,6 +19,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.util.Collections;
 import java.util.List;
+import java.util.Map;
 import java.util.Objects;
 
 @Controller
@@ -195,6 +196,35 @@ public class NewBeeMallGoodsController {
             return ResultGenerator.genFailResult(result);
         }
 
+    }
+    @RequestMapping(value = "/goods/list", method = RequestMethod.GET)
+    @ResponseBody
+    public Result list(@RequestParam Map<String,Object> params){
+        if (ObjectUtils.isEmpty(params.get("page")) || ObjectUtils.isEmpty(params.get("limit"))) {
+            return ResultGenerator.genFailResult("参数异常");
+        }
+        PageQueryUtil pageQueryUtil = new PageQueryUtil(params);
+        PageResult result = newBeeMallGoodsService.getNewBeeMallGoodsPage(pageQueryUtil);
+        return ResultGenerator.genSuccessResult(result);
+    }
+
+    @RequestMapping(value = "/goods/status/{goodSellStatus}", method = RequestMethod.PUT)
+    @ResponseBody
+    public Result putUpGoods(HttpServletRequest request, @RequestBody Long[] goodsId, @PathVariable int goodSellStatus){
+        if (goodsId.length < 1){
+            return ResultGenerator.genFailResult("参数goodsId异常");
+        }
+        if (goodSellStatus != Constants.SELL_STATUS_DOWN || goodSellStatus != Constants.SELL_STATUS_UP) {
+            return ResultGenerator.genFailResult("参数goodSellStatus异常");
+        }
+
+        Integer updateUserId = (Integer) request.getSession().getAttribute("loginUserId");
+        Boolean tempFlag = newBeeMallGoodsService.batchUpdateSellStatus(goodsId, goodSellStatus);
+        if (tempFlag) {
+            return ResultGenerator.genSuccessResult();
+        }else {
+            return ResultGenerator.genFailResult("修改失败");
+        }
     }
 
 
