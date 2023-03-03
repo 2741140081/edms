@@ -60,13 +60,16 @@ public class ExcelAddSheet {
     }
 
     public static void addSheet(String path,String[] sheetNames) throws IOException {
-//        InputStream in = new FileInputStream(path);
+        InputStream in = new FileInputStream("D:\\test\\excel\\2023-5 软考人员名单_update01.xlsx");
         OutputStream ops = null;
         ops = new FileOutputStream(path);
+        XSSFWorkbook workbook1 = new XSSFWorkbook(in);
         XSSFWorkbook workbook = new XSSFWorkbook();
         for (int i = 0; i < sheetNames.length; i++) {
             XSSFSheet sheet = workbook.createSheet(sheetNames[i]);
+
         }
+//        workbook.cloneSheet(0, String.valueOf(workbook1.getSheet("汇总")));
 
 
 

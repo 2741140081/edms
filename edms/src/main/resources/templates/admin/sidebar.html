@@ -43,6 +43,13 @@
                     </a>
                 </li>
 
+                <li class="nav-item">
+                    <a th:href="@{/admin/goods}" th:class="@{path}=='newbee_mall_goods'?'nav-link active':'nav-link'">
+                        <i class="fa fa-list-alt nav-icon" aria-hidden="true"></i>
+                        <p>商品管理</p>
+                    </a>
+                </li>
+
 <!--                <li class="nav-item">-->
 <!--                    &lt;!&ndash; @{path}=='category'?'nav-link active':'nav-link',当获取的path值为category时，使得该标签的class name为nav-link active-->
 <!--                         这样做的目的是为了在进行标签切换中，选中该标签，例如Dashboard选项卡和category选项卡被选中状态 &ndash;&gt;-->
