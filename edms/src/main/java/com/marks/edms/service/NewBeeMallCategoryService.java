@@ -1,5 +1,6 @@
 package com.marks.edms.service;
 
+import com.marks.edms.controller.vo.NewBeeMallIndexCategoryVO;
 import com.marks.edms.entity.GoodsCategory;
 import com.marks.edms.util.PageQueryUtil;
 import com.marks.edms.util.PageResult;
@@ -19,4 +20,6 @@ public interface NewBeeMallCategoryService {
     Boolean deleteBatch(Integer[] ids);
 
     List<GoodsCategory> selectByLevelAndParentIdsAndNumber(List<Long> parentIds, int categoryLevel);
+
+    List<NewBeeMallIndexCategoryVO> getCategoriesForIndex();
 }
