@@ -1,14 +1,18 @@
 package com.marks.edms.service.impl;
 
 import com.marks.edms.controller.common.ServiceResultEnum;
+import com.marks.edms.controller.vo.NewBeeMallIndexCarouselVO;
 import com.marks.edms.dao.CarouselMapper;
 import com.marks.edms.entity.Carousel;
 import com.marks.edms.service.NewBeeMallCarouselService;
+import com.marks.edms.util.BeanUtil;
 import com.marks.edms.util.PageQueryUtil;
 import com.marks.edms.util.PageResult;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.util.CollectionUtils;
 
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -62,5 +66,20 @@ public class NewBeeMallCarouselServiceImpl implements NewBeeMallCarouselService 
         }
         int deleteBathNum = carouselMapper.deleteBath(ids);
         return deleteBathNum > 0;
+    }
+
+    /**
+     * @param number
+     * @return
+     */
+    @Override
+    public List<NewBeeMallIndexCarouselVO> getCarouselForIndex(int number) {
+        ArrayList<NewBeeMallIndexCarouselVO> newBeeMallIndexCarouselVOS = new ArrayList<>(number);
+        List<Carousel> carousels = carouselMapper.findCarouselByNum(number);
+        if (!CollectionUtils.isEmpty(carousels)) {
+            newBeeMallIndexCarouselVOS = (ArrayList<NewBeeMallIndexCarouselVO>) BeanUtil.copyList(carousels, NewBeeMallIndexCarouselVO.class);
+
+        }
+        return newBeeMallIndexCarouselVOS;
     }
 }
