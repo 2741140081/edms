@@ -1,8 +1,9 @@
-package com.marks.edms.leetcode.array.LeetCode4;
+package com.marks.edms.leetcode.array;
 
 
+import com.marks.edms.leetcode.array.LeetCodeConfig.ListNode;
 
-public class LeetCode4 {
+public class LeetCode21 {
     public static void main(String[] args) {
         ListNode list1_0 = new ListNode(1);
         ListNode list1_1 = new ListNode(2);

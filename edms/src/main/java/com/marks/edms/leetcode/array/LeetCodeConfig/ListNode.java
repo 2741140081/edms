@@ -1,8 +1,8 @@
-package com.marks.edms.leetcode.array.LeetCode4;
+package com.marks.edms.leetcode.array.LeetCodeConfig;
 
 public class ListNode {
-    int val;
-    ListNode next;
+    public int val;
+    public ListNode next;
 
     public ListNode() {
     }
