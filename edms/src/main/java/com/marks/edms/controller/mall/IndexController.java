@@ -6,8 +6,7 @@ import com.marks.edms.controller.vo.NewBeeMallIndexCategoryVO;
 import com.marks.edms.service.NewBeeMallCarouselService;
 import com.marks.edms.service.NewBeeMallCategoryService;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
@@ -33,5 +32,17 @@ public class IndexController {
         request.setAttribute("categories", categories);
 
         return "mall/index";
+    }
+
+    @GetMapping("/mall/editor")
+    public String editor() {
+        return "mall/markdownTest";
+    }
+
+    @PostMapping("/mall/saveMarkdown")
+    @ResponseBody
+    public String save(@RequestParam("content") String content) {
+        // 处理Markdown内容保存的逻辑
+        return "保存成功！";
     }
 }

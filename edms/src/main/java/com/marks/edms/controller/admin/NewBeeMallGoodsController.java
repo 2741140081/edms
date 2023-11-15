@@ -214,7 +214,7 @@ public class NewBeeMallGoodsController {
         if (goodsId.length < 1){
             return ResultGenerator.genFailResult("参数goodsId异常");
         }
-        if (goodSellStatus != Constants.SELL_STATUS_DOWN || goodSellStatus != Constants.SELL_STATUS_UP) {
+        if (goodSellStatus != Constants.SELL_STATUS_DOWN && goodSellStatus != Constants.SELL_STATUS_UP) {
             return ResultGenerator.genFailResult("参数goodSellStatus异常");
         }
 
