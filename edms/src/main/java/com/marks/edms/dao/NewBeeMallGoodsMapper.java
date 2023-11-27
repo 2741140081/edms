@@ -21,4 +21,6 @@ public interface NewBeeMallGoodsMapper {
     int getTotalNewBeeMallGoods(PageQueryUtil pageQueryUtil);
 
     int batchUpdateSellStatus(@Param("goodsId") Long[] goodsIds, @Param("sellStatus") int sellStatus);
+
+    List<NewBeeMallGoods> selectByPrimaryKeys(List<Long> goodsIds);
 }

@@ -7,7 +7,7 @@ import com.marks.edms.util.PageResult;
 
 import java.util.List;
 
-public interface newBeeMallIndexConfigService {
+public interface NewBeeMallIndexConfigService {
     /**
      * 后台分页
      *

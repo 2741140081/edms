@@ -37,7 +37,7 @@ public class NewBeeMallCategoryServiceImpl implements NewBeeMallCategoryService 
     @Override
     public String saveCategory(GoodsCategory goodsCategory) {
         GoodsCategory temp = goodsCategoryMapper.selectByLevelAndName(goodsCategory.getCategoryLevel(), goodsCategory.getCategoryName());
-        if (temp == null) {
+        if (temp != null) {
             return ServiceResultEnum.SAME_CATEGORY_EXIST.getResult();
         }
 
