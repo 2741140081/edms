@@ -4,8 +4,10 @@ import com.marks.edms.controller.vo.NewBeeMallIndexConfigGoodsVO;
 import com.marks.edms.entity.IndexConfig;
 import com.marks.edms.util.PageQueryUtil;
 import com.marks.edms.util.PageResult;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
+
 
 public interface NewBeeMallIndexConfigService {
     /**

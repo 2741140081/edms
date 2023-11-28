@@ -2,7 +2,6 @@ package com.marks.edms.service.impl;
 
 import com.marks.edms.controller.common.ServiceResultEnum;
 import com.marks.edms.controller.vo.NewBeeMallIndexConfigGoodsVO;
-import com.marks.edms.dao.GoodsCategoryMapper;
 import com.marks.edms.dao.IndexConfigMapper;
 import com.marks.edms.dao.NewBeeMallGoodsMapper;
 import com.marks.edms.entity.IndexConfig;
@@ -12,13 +11,14 @@ import com.marks.edms.util.BeanUtil;
 import com.marks.edms.util.PageQueryUtil;
 import com.marks.edms.util.PageResult;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 import org.springframework.util.CollectionUtils;
 
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.util.stream.Collectors;
-
+@Service
 public class NewBeeMallIndexConfigServiceImpl implements NewBeeMallIndexConfigService {
 
     @Autowired
@@ -82,7 +82,7 @@ public class NewBeeMallIndexConfigServiceImpl implements NewBeeMallIndexConfigSe
         }
         Date date = new Date();
         indexConfigTemp.setUpdateTime(date);
-        if (indexConfigMapper.updateByPrimaryKey(indexConfig) > 0) {
+        if (indexConfigMapper.updateByPrimaryKeySelective(indexConfig) > 0) {
             return ServiceResultEnum.SUCCESS.getResult();
         }
         return ServiceResultEnum.DB_ERROR.getResult();
