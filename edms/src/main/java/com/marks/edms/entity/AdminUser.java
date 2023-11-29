@@ -11,6 +11,17 @@ public class AdminUser {
 
     private Byte locked;
 
+    public AdminUser() {
+    }
+
+    public AdminUser(Integer adminUserId, String loginUserName, String loginPassword, String nickName, Byte locked) {
+        this.adminUserId = adminUserId;
+        this.loginUserName = loginUserName;
+        this.loginPassword = loginPassword;
+        this.nickName = nickName;
+        this.locked = locked;
+    }
+
     public Integer getAdminUserId() {
         return adminUserId;
     }
@@ -49,5 +60,16 @@ public class AdminUser {
 
     public void setLocked(Byte locked) {
         this.locked = locked;
+    }
+
+    @Override
+    public String toString() {
+        return "AdminUser{" +
+                "adminUserId=" + adminUserId +
+                ", loginUserName='" + loginUserName + '\'' +
+                ", loginPassword='" + loginPassword + '\'' +
+                ", nickName='" + nickName + '\'' +
+                ", locked=" + locked +
+                '}';
     }
 }

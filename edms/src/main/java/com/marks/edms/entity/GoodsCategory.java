@@ -27,6 +27,22 @@ public class GoodsCategory {
 
     private Integer updateUser;
 
+    public GoodsCategory() {
+    }
+
+    public GoodsCategory(Long categoryId, Byte categoryLevel, Long parentId, String categoryName, Integer categoryRank, Byte isDeleted, Date createTime, Integer createUser, Date updateTime, Integer updateUser) {
+        this.categoryId = categoryId;
+        this.categoryLevel = categoryLevel;
+        this.parentId = parentId;
+        this.categoryName = categoryName;
+        this.categoryRank = categoryRank;
+        this.isDeleted = isDeleted;
+        this.createTime = createTime;
+        this.createUser = createUser;
+        this.updateTime = updateTime;
+        this.updateUser = updateUser;
+    }
+
     public Long getCategoryId() {
         return categoryId;
     }
@@ -105,5 +121,21 @@ public class GoodsCategory {
 
     public void setUpdateUser(Integer updateUser) {
         this.updateUser = updateUser;
+    }
+
+    @Override
+    public String toString() {
+        return "GoodsCategory{" +
+                "categoryId=" + categoryId +
+                ", categoryLevel=" + categoryLevel +
+                ", parentId=" + parentId +
+                ", categoryName='" + categoryName + '\'' +
+                ", categoryRank=" + categoryRank +
+                ", isDeleted=" + isDeleted +
+                ", createTime=" + createTime +
+                ", createUser=" + createUser +
+                ", updateTime=" + updateTime +
+                ", updateUser=" + updateUser +
+                '}';
     }
 }

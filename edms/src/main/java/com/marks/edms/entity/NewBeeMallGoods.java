@@ -48,6 +48,28 @@ public class NewBeeMallGoods {
 
     private Integer updateUser;
 
+    public NewBeeMallGoods() {
+    }
+
+    public NewBeeMallGoods(Long goodsId, String goodsName, String goodsIntro, Long goodsCategoryId, String goodsCoverImg, String goodsCarousel, String goodsDetailContent, Integer originalPrice, Integer sellingPrice, Integer stockNum, String tag, Byte goodsSellStatus, Date createTime, Integer createUser, Date updateTime, Integer updateUser) {
+        this.goodsId = goodsId;
+        this.goodsName = goodsName;
+        this.goodsIntro = goodsIntro;
+        this.goodsCategoryId = goodsCategoryId;
+        this.goodsCoverImg = goodsCoverImg;
+        this.goodsCarousel = goodsCarousel;
+        this.goodsDetailContent = goodsDetailContent;
+        this.originalPrice = originalPrice;
+        this.sellingPrice = sellingPrice;
+        this.stockNum = stockNum;
+        this.tag = tag;
+        this.goodsSellStatus = goodsSellStatus;
+        this.createTime = createTime;
+        this.createUser = createUser;
+        this.updateTime = updateTime;
+        this.updateUser = updateUser;
+    }
+
     public Long getGoodsId() {
         return goodsId;
     }
@@ -174,5 +196,27 @@ public class NewBeeMallGoods {
 
     public void setUpdateUser(Integer updateUser) {
         this.updateUser = updateUser;
+    }
+
+    @Override
+    public String toString() {
+        return "NewBeeMallGoods{" +
+                "goodsId=" + goodsId +
+                ", goodsName='" + goodsName + '\'' +
+                ", goodsIntro='" + goodsIntro + '\'' +
+                ", goodsCategoryId=" + goodsCategoryId +
+                ", goodsCoverImg='" + goodsCoverImg + '\'' +
+                ", goodsCarousel='" + goodsCarousel + '\'' +
+                ", goodsDetailContent='" + goodsDetailContent + '\'' +
+                ", originalPrice=" + originalPrice +
+                ", sellingPrice=" + sellingPrice +
+                ", stockNum=" + stockNum +
+                ", tag='" + tag + '\'' +
+                ", goodsSellStatus=" + goodsSellStatus +
+                ", createTime=" + createTime +
+                ", createUser=" + createUser +
+                ", updateTime=" + updateTime +
+                ", updateUser=" + updateUser +
+                '}';
     }
 }

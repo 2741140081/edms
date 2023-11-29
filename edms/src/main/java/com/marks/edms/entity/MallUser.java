@@ -25,6 +25,21 @@ public class MallUser {
     @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss", timezone = "GMT+8")
     private Date createTime;
 
+    public MallUser() {
+    }
+
+    public MallUser(Long userId, String nickName, String loginName, String passwordMd5, String introduceSign, String address, Byte isDeleted, Byte lockedFlag, Date createTime) {
+        this.userId = userId;
+        this.nickName = nickName;
+        this.loginName = loginName;
+        this.passwordMd5 = passwordMd5;
+        this.introduceSign = introduceSign;
+        this.address = address;
+        this.isDeleted = isDeleted;
+        this.lockedFlag = lockedFlag;
+        this.createTime = createTime;
+    }
+
     public Long getUserId() {
         return userId;
     }
@@ -95,5 +110,20 @@ public class MallUser {
 
     public void setCreateTime(Date createTime) {
         this.createTime = createTime;
+    }
+
+    @Override
+    public String toString() {
+        return "MallUser{" +
+                "userId=" + userId +
+                ", nickName='" + nickName + '\'' +
+                ", loginName='" + loginName + '\'' +
+                ", passwordMd5='" + passwordMd5 + '\'' +
+                ", introduceSign='" + introduceSign + '\'' +
+                ", address='" + address + '\'' +
+                ", isDeleted=" + isDeleted +
+                ", lockedFlag=" + lockedFlag +
+                ", createTime=" + createTime +
+                '}';
     }
 }

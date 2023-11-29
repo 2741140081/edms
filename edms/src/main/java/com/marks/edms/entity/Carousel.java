@@ -25,6 +25,21 @@ public class Carousel {
 
     private Integer updateUser;
 
+    public Carousel() {
+    }
+
+    public Carousel(Integer carouselId, String carouselUrl, String redirectUrl, Integer carouselRank, Byte isDeleted, Date createTime, Integer createUser, Date updateTime, Integer updateUser) {
+        this.carouselId = carouselId;
+        this.carouselUrl = carouselUrl;
+        this.redirectUrl = redirectUrl;
+        this.carouselRank = carouselRank;
+        this.isDeleted = isDeleted;
+        this.createTime = createTime;
+        this.createUser = createUser;
+        this.updateTime = updateTime;
+        this.updateUser = updateUser;
+    }
+
     public Integer getCarouselId() {
         return carouselId;
     }
@@ -95,5 +110,20 @@ public class Carousel {
 
     public void setUpdateUser(Integer updateUser) {
         this.updateUser = updateUser;
+    }
+
+    @Override
+    public String toString() {
+        return "Carousel{" +
+                "carouselId=" + carouselId +
+                ", carouselUrl='" + carouselUrl + '\'' +
+                ", redirectUrl='" + redirectUrl + '\'' +
+                ", carouselRank=" + carouselRank +
+                ", isDeleted=" + isDeleted +
+                ", createTime=" + createTime +
+                ", createUser=" + createUser +
+                ", updateTime=" + updateTime +
+                ", updateUser=" + updateUser +
+                '}';
     }
 }
