@@ -1,7 +1,6 @@
 package com.marks.edms.service;
 
 import com.marks.edms.entity.AdminUser;
-import sun.security.util.Password;
 
 public interface AdminUserService {
     /**

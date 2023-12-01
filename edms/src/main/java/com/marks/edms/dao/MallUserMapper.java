@@ -11,14 +11,35 @@ public interface MallUserMapper {
 
     int insert(MallUser record);
 
+    /**
+     * 保存一条记录
+     * @param record
+     * @return
+     */
     int insertSelective(MallUser record);
 
     MallUser selectByPrimaryKey(Long userId);
 
+    /**
+     * 根据loginName查询记录
+     * @param loginName
+     * @return
+     */
     MallUser selectByLoginName(String loginName);
 
+    /**
+     * 根据loginName和Password查询记录
+     * @param loginName
+     * @param password
+     * @return
+     */
     MallUser selectByLoginNameAndPasswd(@Param("loginName") String loginName, @Param("password") String password);
 
+    /**
+     * 更新一条记录
+     * @param record
+     * @return
+     */
     int updateByPrimaryKeySelective(MallUser record);
 
     int updateByPrimaryKey(MallUser record);
@@ -27,5 +48,5 @@ public interface MallUserMapper {
 
     int getTotalMallUsers(PageQueryUtil pageUtil);
 
-    int lockUserBatch(@Param("ids") Integer[] ids, @Param("lockStatus") int lockStatus);
+    int lockUserBatch(@Param("ids") Long[] ids, @Param("lockStatus") int lockStatus);
 }
