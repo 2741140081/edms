@@ -11,6 +11,10 @@ public enum ServiceResultEnum {
 
     SAME_LOGIN_NAME_EXIST("用户名已存在！"),
 
+    LOGIN_NAME_DON_EXIST("用户名不存在"),
+
+    LOGIN_PASSWORD_ERROR("密码输入错误"),
+
     LOGIN_NAME_NULL("请输入登录名！"),
 
     LOGIN_PASSWORD_NULL("请输入密码！"),

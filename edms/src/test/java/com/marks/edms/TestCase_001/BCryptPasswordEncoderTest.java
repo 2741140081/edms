@@ -13,7 +13,7 @@ public class BCryptPasswordEncoderTest {
 
     @Test
     public void savePassword() {
-        // encode()：对明文字符串进行加密
+        //encode()：对明文字符串进行加密
         //注册用户时，使用SHA-256+随机盐+密钥把用户输入的密码进行hash处理，得到密码的hash值，然后将其存入数据库中。
         BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
         String encode1 = encoder.encode(password);
