@@ -11,10 +11,8 @@
         <result column="original_price" jdbcType="INTEGER" property="originalPrice"/>
         <result column="selling_price" jdbcType="INTEGER" property="sellingPrice"/>
         <result column="stock_num" jdbcType="INTEGER" property="stockNum"/>
-
         <result column="tag" jdbcType="VARCHAR" property="tag"></result>
         <result column="goods_sell_status" jdbcType="TINYINT" property="goodsSellStatus"></result>
-
         <result column="create_time" jdbcType="TIMESTAMP" property="createTime"/>
         <result column="create_user" jdbcType="INTEGER" property="createUser"/>
         <result column="update_time" jdbcType="TIMESTAMP" property="updateTime"/>
@@ -35,69 +33,65 @@
         goods_detail_content
     </sql>
 
+    <insert id="batchInsert">
+        insert into tb_newbee_mall_goods_info
+        (goods_name, goods_intro, goods_category_id, goods_cover_img, goods_carousel,
+        goods_detail_content,original_price, selling_price, stock_num)
+        values
+        <foreach collection="newBeeMallGoodsList" item="goods" separator=",">
+            (#{goods.goodsName},#{goods.goodsIntro},#{goods.goodsCategoryId},#{goods.goodsCoverImg},#{goods.goodsCarousel},#{goods.goodsDetailContent},#{goods.originalPrice},#{goods.sellingPrice},#{goods.stockNum})
+        </foreach>
+
+    </insert>
+
     <insert id="insertSelective" parameterType="com.marks.edms.entity.NewBeeMallGoods">
         insert into tb_newbee_mall_goods_info
         <trim prefix="(" suffix=")" suffixOverrides=",">
             <if test="goodsId != null">
                 goods_id,
             </if>
-
             <if test="goodsName != null">
                 goods_name,
             </if>
-
             <if test="goodsIntro != null">
                 goods_intro,
             </if>
-
             <if test="goodsCategoryId != null">
                 goods_category_id,
             </if>
-
             <if test="goodsCoverImg != null">
                 goods_cover_img,
             </if>
-
             <if test="goodsCarousel != null">
                 goods_carousel,
             </if>
-
             <if test="originalPrice != null">
                 original_price,
             </if>
-
             <if test="sellingPrice != null">
                 selling_price,
             </if>
-
             <if test="stockNum != null">
                 stock_num,
             </if>
-
             <if test="tag != null">
                 tag,
             </if>
-
             <if test="goodsSellStatus != null">
                 goods_sell_status,
             </if>
-
             <if test="createTime != null">
                 create_time,
             </if>
-
             <if test="createUser != null">
                 create_user,
             </if>
-
             <if test="updateTime != null">
                 update_time,
             </if>
-
             <if test="updateUser != null">
                 update_user,
             </if>
-
             <if test="goodsDetailContent != null">
                 goods_detail_content,
             </if>
@@ -107,63 +101,48 @@
             <if test="goodsId != null">
                 #{goodsId, jdbcType=BIGINT},
             </if>
-
             <if test="goodsName != null">
                 #{goodsName, jdbcType=VARCHAR},
             </if>
-
             <if test="goodsIntro != null">
                 #{goodsIntro, jdbcType=VARCHAR},
             </if>
-
             <if test="goodsCategoryId != null">
                 #{goodsCategoryId, jdbcType=BIGINT},
             </if>
-
             <if test="goodsCoverImg != null">
                 #{goodsCoverImg, jdbcType=VARCHAR},
             </if>
-
             <if test="goodsCarousel != null">
                 #{goodsCarousel, jdbcType=VARCHAR},
             </if>
-
             <if test="originalPrice != null">
                 #{originalPrice, jdbcType=BIGINT},
             </if>
-
             <if test="sellingPrice != null">
                 #{sellingPrice, jdbcType=BIGINT},
             </if>
-
             <if test="stockNum != null">
                 #{stockNum, jdbcType=BIGINT},
             </if>
-
             <if test="tag != null">
                 #{tag, jdbcType=VARCHAR},
             </if>
-
             <if test="goodsSellStatus != null">
                 #{goodsSellStatus, jdbcType=TINYINT},
             </if>
-
             <if test="createTime != null">
                 #{createTime, jdbcType=TIMESTAMP},
             </if>
-
             <if test="createUser != null">
                 #{createUser, jdbcType=INTEGER},
             </if>
-
             <if test="updateTime != null">
                 #{updateTime, jdbcType=TIMESTAMP},
             </if>
-
             <if test="updateUser != null">
                 #{updateUser, jdbcType=INTEGER},
             </if>
-
             <if test="goodsDetailContent != null">
                 #{goodsDetailContent, jdbcType=LONGVARCHAR},
             </if>
@@ -199,59 +178,45 @@
             <if test="goodsName != null">
                 goods_name = #{goodsName, jdbcType=VARCHAR},
             </if>
-
             <if test="goodsIntro != null">
                 goods_intro = #{goodsIntro, jdbcType=VARCHAR},
             </if>
-
             <if test="goodsCategoryId != null">
                 goods_category_id = #{goodsCategoryId, jdbcType=BIGINT},
             </if>
-
             <if test="goodsCoverImg != null">
                 goods_cover_img = #{goodsCoverImg, jdbcType=VARCHAR},
             </if>
-
             <if test="goodsCarousel != null">
                 goods_carousel = #{goodsCarousel, jdbcType=VARCHAR},
             </if>
-
             <if test="originalPrice != null">
                 original_price = #{originalPrice, jdbcType=BIGINT},
             </if>
-
             <if test="sellingPrice != null">
                 selling_price = #{sellingPrice, jdbcType=BIGINT},
             </if>
-
             <if test="stockNum != null">
                 stock_num = #{stockNum, jdbcType=BIGINT},
             </if>
-
             <if test="tag != null">
                 tag = #{tag, jdbcType=VARCHAR},
             </if>
-
             <if test="goodsSellStatus != null">
                 goods_sell_status = #{goodsSellStatus, jdbcType=TINYINT},
             </if>
-
             <if test="createTime != null">
                 create_time = #{createTime, jdbcType=TIMESTAMP},
             </if>
-
             <if test="createUser != null">
                 create_user = #{createUser, jdbcType=INTEGER},
             </if>
-
             <if test="updateTime != null">
                 update_time = #{updateTime, jdbcType=TIMESTAMP},
             </if>
-
             <if test="updateUser != null">
                 update_user = #{updateUser, jdbcType=INTEGER},
             </if>
-
             <if test="goodsDetailContent != null">
                 goods_detail_content = #{goodsDetailContent, jdbcType=LONGVARCHAR},
             </if>
@@ -263,22 +228,115 @@
         select
         <include refid="Base_Column_list"></include>
         from tb_newbee_mall_goods_info
+        <where>
+            <if test="goodsName!=null and goodsName!=''">
+                and goods_name like CONCAT('%','#{goodsName}','%')
+            </if>
+            <if test="goodsSellStatus!=null and goodsSellStatus!=''">
+                and goods_sell_status = #{goodsSellStatus}
+            </if>
+            <if test="startTime != null and startTime.trim() != ''">
+                and create_time &gt; #{startTime}
+            </if>
+            <if test="endTime != null and endTime.trim() != ''">
+                and create_time &lt; #{endTime}
+            </if>
+        </where>
         order by goods_id desc
         <if test="start != null and limit != null">
             limit #{start}, #{limit}
         </if>
     </select>
 
-    <select id="getTotalNewBeeMallGoods" resultType="int">
+    <select id="getTotalNewBeeMallGoods" parameterType="Map" resultType="int">
         select count(*) from tb_newbee_mall_goods_info
+        <where>
+            <if test="goodsName != null and goodsName != ''">
+                and goods_name like CONCAT('%',#{goodsName},'%')
+            </if>
+            <if test="goodsSellStatus != null and goodsSellStatus != ''">
+                and goods_sell_status = #{goodsSellStatus}
+            </if>
+            <if test="startTime != null and startTime.trim() != ''">
+                and create_time &gt; #{startTime}
+            </if>
+            <if test="endTime != null and endTime.trim() != ''">
+                and create_time &lt; #{endTime}
+            </if>
+        </where>
     </select>
 
     <update id="batchUpdateSellStatus">
         update tb_newbee_mall_goods_info set goods_sell_status = #{sellStatus, jdbcType=TINYINT}
-        where good_id in
+        where goods_id in
         <foreach collection="goodsId" item="id" open="(" separator="," close=")">
             #{id, jdbcType=BIGINT}
         </foreach>
     </update>
 
+    <select id="findNewBeeMallGoodsListBySearch" parameterType="Map" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_list"></include>
+        from tb_newbee_mall_goods_info
+        <where>
+            <if test="keyword != null and keyword != ''">
+                and (goods_name like CONCAT('%',#{keyword},'%') or goods_intro like CONCAT('%',#{keyword},'%'))
+            </if>
+            <if test="goodsCategoryId != null and goodsCategoryId != ''">
+                and goods_category_id = #{goodsCategoryId}
+            </if>
+            <if test="goodsSellStatus != null">
+                and goods_sell_status = #{goodsSellStatus}
+            </if>
+        </where>
+        <if test="orderBy != null and orderBy != ''">
+            <choose>
+                <when test="orderBy == 'new'">
+                    <!-- 按照发布时间倒序排序-->
+                    order by goods_id desc
+                </when>
+                <when test="orderBy == 'price'">
+                    <!-- 按照售价从小到大排序-->
+                    order by selling_price desc
+                </when>
+                <otherwise>
+                    <!-- 默认按照库存数量从大到小排序-->
+                    order by stock_num desc
+                </otherwise>
+            </choose>
+        </if>
+        <if test="start != null and limit != null">
+            limit #{start}, #{limit}
+        </if>
+    </select>
+
+    <select id="getTotalNewBeeMallGoodsBySearch" parameterType="Map" resultType="int">
+        select count(*)
+        from tb_newbee_mall_goods_info
+        <where>
+            <if test="keyword != null and keyword != ''">
+                and (goods_name like CONCAT('%',#{keyword},'%') or goods_intro like CONCAT('%',#{keyword},'%'))
+            </if>
+            <if test="goodsCategoryId != null and goodsCategoryId != ''">
+                and goods_category_id = #{goodsCategoryId}
+            </if>
+            <if test="goodsSellStatus != null">
+                and goods_sell_status = #{goodsSellStatus}
+            </if>
+        </where>
+    </select>
+
+    <update id="updateStockNum">
+        <foreach collection="stockNumDTOS" item="stock" separator=";">
+            update tb_newbee_mall_goods_info set stock_num = stock_num - #{stock.goodsCount}
+            where goods_id = #{stock.goodsId} and stock_num >= #{stock.goodsCount} and goods_sell_status = 0
+        </foreach>
+    </update>
+
+    <update id="recoverStockNum">
+        <foreach collection="stockNumDTOS" item="stock" separator=";">
+            update tb_newbee_mall_goods_info set stock_num = stock_num + #{stock.goodsCount}
+            where goods_id = #{stock.goodsId} and stock_num >= #{stock.goodsCount} and goods_sell_status = 0
+        </foreach>
+    </update>
 </mapper>
