@@ -157,6 +157,14 @@
         where goods_id = #{goodsId}
     </select>
 
+    <select id="selectByCategoryIdAndName" resultMap="ResultMapWithBLOBs">
+        select
+        <include refid="Base_Column_list"></include>,
+        <include refid="Blod_Column_list"></include>
+        from tb_newbee_mall_goods_info
+        where goods_name = #{goodsName} and goods_category_id = #{goodsCategoryId}
+    </select>
+
     <select id="selectByPrimaryKeys" resultMap="BaseResultMap">
         select
         <include refid="Base_Column_list"></include>

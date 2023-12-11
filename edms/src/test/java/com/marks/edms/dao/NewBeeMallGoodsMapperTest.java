@@ -201,4 +201,30 @@ class NewBeeMallGoodsMapperTest {
         int recoverStockNum = goodsMapper.recoverStockNum(stockNumDTOS);
         Assertions.assertEquals(true,recoverStockNum==1,"需要recover的数据number:"+ stockNumDTOS.size() +", 实际更新recover库存数据number:"+ recoverStockNum);
     }
+
+    @Transactional
+    @Test
+    void selectByCategoryIdAndName() {
+        NewBeeMallGoods goods = new NewBeeMallGoods();
+        goods.setGoodsName("小米8 游戏手机 全面屏 黑色");
+        goods.setGoodsIntro("Goods Intro Test Update");
+        goods.setGoodsCategoryId(51L);
+        goods.setGoodsCoverImg("/admin/dist/img/number Test Update-img.png");
+        goods.setGoodsCarousel("/admin/dist/img/number Test Update-img.png");
+        goods.setGoodsDetailContent("<p>商品介绍加载中...</p>");
+        goods.setOriginalPrice(1599);
+        goods.setSellingPrice(1299);
+        goods.setStockNum(1000);
+        goods.setGoodsId(10907L);
+
+        List<NewBeeMallGoods> goodsTemp = goodsMapper.selectByCategoryIdAndName(goods.getGoodsName(), goods.getGoodsCategoryId());
+        Boolean flag = false;
+        if (goodsTemp != null) {
+            flag = true;
+        }
+
+        Assertions.assertEquals(true,flag,"查询失败selectByCategoryIdAndName" + goodsTemp.size());
+
+
+    }
 }

@@ -34,4 +34,6 @@ public interface NewBeeMallGoodsMapper {
     int updateStockNum(@Param("stockNumDTOS") List<StockNumDTO> stockNumDTOS);
 
     int recoverStockNum(@Param("stockNumDTOS") List<StockNumDTO> stockNumDTOS);
+
+    List<NewBeeMallGoods> selectByCategoryIdAndName(@Param("goodsName") String goodsName, @Param("goodsCategoryId") Long goodsCategoryId);
 }
