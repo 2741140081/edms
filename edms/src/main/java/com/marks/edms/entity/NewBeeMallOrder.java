@@ -6,7 +6,7 @@ import java.util.Date;
 
 public class NewBeeMallOrder {
     //订单表主键id
-    private Integer orderId;
+    private Long orderId;
 
     //订单号
     private String orderNo;
@@ -56,7 +56,7 @@ public class NewBeeMallOrder {
     public NewBeeMallOrder() {
     }
 
-    public NewBeeMallOrder(Integer orderId, String orderNo, Long userId, Integer totalPrice, Byte payStatus, Byte payType, Date payTime, Byte orderStatus, String extraInfo, String userName, String userPhone, String userAddress, Byte isDeleted, Date createTime, Date updateTime) {
+    public NewBeeMallOrder(Long orderId, String orderNo, Long userId, Integer totalPrice, Byte payStatus, Byte payType, Date payTime, Byte orderStatus, String extraInfo, String userName, String userPhone, String userAddress, Byte isDeleted, Date createTime, Date updateTime) {
         this.orderId = orderId;
         this.orderNo = orderNo;
         this.userId = userId;
@@ -74,11 +74,11 @@ public class NewBeeMallOrder {
         this.updateTime = updateTime;
     }
 
-    public Integer getOrderId() {
+    public Long getOrderId() {
         return orderId;
     }
 
-    public void setOrderId(Integer orderId) {
+    public void setOrderId(Long orderId) {
         this.orderId = orderId;
     }
 

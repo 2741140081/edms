@@ -34,9 +34,9 @@
         (order_no, user_id, total_price, pay_status, pay_type, pay_time, order_status, extra_info, user_name, user_phone,
         user_address, is_deleted, create_time, update_time)
         values
-        #{orderNo,jdbcType=VARCHAR}, #{userId,jdbcType=BIGINT}, #{totalPrice,jdbcType=INTEGER}, #{payStatus,jdbcType=TINYINT}, #{payType,jdbcType=TINYINT},
-        #{payTime,jdbcType=TIMESTAMP}, #{orderStatus,jdbcType=TINYINT}, #{extraInfo,jdbcType=VARCHAR}, #{userAddress,jdbcType=VARCHAR},#{isDeleted,jdbcType=TINYINT},
-        #{createTime,jdbcType=TIMESTAMP}, #{updateTime,jdbcType=TIMESTAMP})
+        (#{orderNo,jdbcType=VARCHAR}, #{userId,jdbcType=BIGINT}, #{totalPrice,jdbcType=INTEGER}, #{payStatus,jdbcType=TINYINT}, #{payType,jdbcType=TINYINT},
+        #{payTime,jdbcType=TIMESTAMP}, #{orderStatus,jdbcType=TINYINT}, #{extraInfo,jdbcType=VARCHAR}, #{userName,jdbcType=VARCHAR}, #{userPhone,jdbcType=VARCHAR}, #{userAddress,jdbcType=VARCHAR},
+        #{isDeleted,jdbcType=TINYINT}, #{createTime,jdbcType=TIMESTAMP}, #{updateTime,jdbcType=TIMESTAMP})
     </insert>
 
     <insert id="insertSelective" parameterType="com.marks.edms.entity.NewBeeMallOrder">
