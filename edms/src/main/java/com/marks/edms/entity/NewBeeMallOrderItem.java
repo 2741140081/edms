@@ -21,7 +21,7 @@ public class NewBeeMallOrderItem {
     private String goodsCoverImg;
 
     //下单时商品的价格_订单快照
-    private Integer sellingCount;
+    private Integer sellingPrice;
 
     //数量_订单快照
     private Integer goodsCount;
@@ -33,13 +33,13 @@ public class NewBeeMallOrderItem {
     public NewBeeMallOrderItem() {
     }
 
-    public NewBeeMallOrderItem(Long orderItemId, Long orderId, Long goodsId, String goodsName, String goodsCoverImg, Integer sellingCount, Integer goodsCount, Date createTime) {
+    public NewBeeMallOrderItem(Long orderItemId, Long orderId, Long goodsId, String goodsName, String goodsCoverImg, Integer sellingPrice, Integer goodsCount, Date createTime) {
         this.orderItemId = orderItemId;
         this.orderId = orderId;
         this.goodsId = goodsId;
         this.goodsName = goodsName;
         this.goodsCoverImg = goodsCoverImg;
-        this.sellingCount = sellingCount;
+        this.sellingPrice = sellingPrice;
         this.goodsCount = goodsCount;
         this.createTime = createTime;
     }
@@ -84,12 +84,12 @@ public class NewBeeMallOrderItem {
         this.goodsCoverImg = goodsCoverImg;
     }
 
-    public Integer getSellingCount() {
-        return sellingCount;
+    public Integer getSellingPrice() {
+        return sellingPrice;
     }
 
-    public void setSellingCount(Integer sellingCount) {
-        this.sellingCount = sellingCount;
+    public void setSellingPrice(Integer sellingPrice) {
+        this.sellingPrice = sellingPrice;
     }
 
     public Integer getGoodsCount() {
