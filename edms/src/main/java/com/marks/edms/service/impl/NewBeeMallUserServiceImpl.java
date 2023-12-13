@@ -1,7 +1,7 @@
 package com.marks.edms.service.impl;
 
 import com.marks.edms.common.Constants;
-import com.marks.edms.controller.common.ServiceResultEnum;
+import com.marks.edms.common.ServiceResultEnum;
 import com.marks.edms.controller.vo.NewBeeMallUserVO;
 import com.marks.edms.dao.MallUserMapper;
 import com.marks.edms.entity.MallUser;

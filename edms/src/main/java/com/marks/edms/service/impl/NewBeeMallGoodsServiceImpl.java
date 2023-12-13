@@ -1,7 +1,7 @@
 package com.marks.edms.service.impl;
 
 import com.marks.edms.common.NewBeeMallCategoryLevelEnum;
-import com.marks.edms.controller.common.ServiceResultEnum;
+import com.marks.edms.common.ServiceResultEnum;
 import com.marks.edms.controller.vo.NewBeeMallSearchGoodsVO;
 import com.marks.edms.dao.GoodsCategoryMapper;
 import com.marks.edms.dao.NewBeeMallGoodsMapper;

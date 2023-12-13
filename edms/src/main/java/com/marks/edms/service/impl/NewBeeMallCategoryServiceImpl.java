@@ -2,7 +2,7 @@ package com.marks.edms.service.impl;
 
 import com.marks.edms.common.Constants;
 import com.marks.edms.common.NewBeeMallCategoryLevelEnum;
-import com.marks.edms.controller.common.ServiceResultEnum;
+import com.marks.edms.common.ServiceResultEnum;
 import com.marks.edms.controller.vo.NewBeeMallIndexCategoryVO;
 import com.marks.edms.controller.vo.SearchPageCategoryVO;
 import com.marks.edms.controller.vo.SecondLevelCategoryVO;

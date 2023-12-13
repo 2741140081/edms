@@ -1,8 +1,8 @@
 package com.marks.edms.controller.mall;
 
 import com.marks.edms.common.Constants;
-import com.marks.edms.controller.admin.NewBeeMallException;
-import com.marks.edms.controller.common.IndexConfigTypeEnum;
+import com.marks.edms.common.NewBeeMallException;
+import com.marks.edms.common.IndexConfigTypeEnum;
 import com.marks.edms.controller.vo.NewBeeMallIndexCarouselVO;
 import com.marks.edms.controller.vo.NewBeeMallIndexCategoryVO;
 import com.marks.edms.controller.vo.NewBeeMallIndexConfigGoodsVO;

@@ -1,6 +1,6 @@
 package com.marks.edms.service.impl;
 
-import com.marks.edms.controller.common.ServiceResultEnum;
+import com.marks.edms.common.ServiceResultEnum;
 import com.marks.edms.controller.vo.NewBeeMallIndexCarouselVO;
 import com.marks.edms.dao.CarouselMapper;
 import com.marks.edms.entity.Carousel;

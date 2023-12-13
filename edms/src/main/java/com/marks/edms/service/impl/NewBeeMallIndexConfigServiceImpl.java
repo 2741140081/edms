@@ -1,6 +1,6 @@
 package com.marks.edms.service.impl;
 
-import com.marks.edms.controller.common.ServiceResultEnum;
+import com.marks.edms.common.ServiceResultEnum;
 import com.marks.edms.controller.vo.NewBeeMallIndexConfigGoodsVO;
 import com.marks.edms.dao.IndexConfigMapper;
 import com.marks.edms.dao.NewBeeMallGoodsMapper;

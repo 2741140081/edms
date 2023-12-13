@@ -2,7 +2,7 @@ package com.marks.edms.controller.mall;
 
 
 import com.marks.edms.common.Constants;
-import com.marks.edms.controller.admin.NewBeeMallException;
+import com.marks.edms.common.NewBeeMallException;
 import com.marks.edms.controller.vo.NewBeeMallGoodsDetailVO;
 import com.marks.edms.controller.vo.SearchPageCategoryVO;
 import com.marks.edms.entity.NewBeeMallGoods;

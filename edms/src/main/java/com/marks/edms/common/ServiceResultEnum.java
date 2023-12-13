@@ -1,4 +1,4 @@
-package com.marks.edms.controller.common;
+package com.marks.edms.common;
 
 public enum ServiceResultEnum {
     ERROR("error"),
@@ -9,6 +9,7 @@ public enum ServiceResultEnum {
 
     SAME_CATEGORY_EXIST("已存在同级同名的分类！"),
 
+    MALL_USER_ID_DON_EXIST("用户不存在"),
     SAME_LOGIN_NAME_EXIST("用户名已存在！"),
 
     LOGIN_NAME_DON_EXIST("用户名不存在"),

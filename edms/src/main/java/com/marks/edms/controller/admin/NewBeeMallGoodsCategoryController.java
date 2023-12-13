@@ -1,8 +1,7 @@
 package com.marks.edms.controller.admin;
 
 import com.marks.edms.common.NewBeeMallCategoryLevelEnum;
-import com.marks.edms.controller.common.ServiceResultEnum;
-import com.marks.edms.entity.Carousel;
+import com.marks.edms.common.ServiceResultEnum;
 import com.marks.edms.entity.GoodsCategory;
 import com.marks.edms.service.NewBeeMallCategoryService;
 import com.marks.edms.util.PageQueryUtil;

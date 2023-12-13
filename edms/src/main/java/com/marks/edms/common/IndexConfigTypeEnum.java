@@ -1,4 +1,4 @@
-package com.marks.edms.controller.common;
+package com.marks.edms.common;
 
 /**
  * @apiNote

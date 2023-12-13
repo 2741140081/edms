@@ -2,7 +2,7 @@ package com.marks.edms.controller.admin;
 
 import com.marks.edms.common.Constants;
 import com.marks.edms.common.NewBeeMallCategoryLevelEnum;
-import com.marks.edms.controller.common.ServiceResultEnum;
+import com.marks.edms.common.ServiceResultEnum;
 import com.marks.edms.entity.GoodsCategory;
 import com.marks.edms.entity.NewBeeMallGoods;
 import com.marks.edms.service.NewBeeMallCategoryService;
@@ -16,7 +16,6 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
 import java.util.Collections;
 import java.util.List;
 import java.util.Map;

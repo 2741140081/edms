@@ -1,4 +1,4 @@
-package com.marks.edms.controller.admin;
+package com.marks.edms.common;
 
 public class NewBeeMallException extends RuntimeException{
     public NewBeeMallException() {

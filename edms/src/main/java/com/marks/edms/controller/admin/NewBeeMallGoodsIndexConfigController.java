@@ -1,7 +1,8 @@
 package com.marks.edms.controller.admin;
 
-import com.marks.edms.controller.common.IndexConfigTypeEnum;
-import com.marks.edms.controller.common.ServiceResultEnum;
+import com.marks.edms.common.IndexConfigTypeEnum;
+import com.marks.edms.common.NewBeeMallException;
+import com.marks.edms.common.ServiceResultEnum;
 import com.marks.edms.entity.IndexConfig;
 import com.marks.edms.service.NewBeeMallIndexConfigService;
 import com.marks.edms.util.PageQueryUtil;

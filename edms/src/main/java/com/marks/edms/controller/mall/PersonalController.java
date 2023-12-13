@@ -1,9 +1,8 @@
 package com.marks.edms.controller.mall;
 
 import com.marks.edms.common.Constants;
-import com.marks.edms.controller.common.ServiceResultEnum;
+import com.marks.edms.common.ServiceResultEnum;
 import com.marks.edms.controller.vo.NewBeeMallUserVO;
-import com.marks.edms.entity.AdminUser;
 import com.marks.edms.entity.MallUser;
 import com.marks.edms.service.NewBeeMallUserService;
 import com.marks.edms.util.Result;
