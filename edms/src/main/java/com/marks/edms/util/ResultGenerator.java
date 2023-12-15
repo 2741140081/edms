@@ -33,7 +33,7 @@ public class ResultGenerator {
     public static Result genFailResult(String message) {
         Result<Object> result = new Result<>();
         result.setResultCode(RESULT_CODE_SERVICE_ERROR);
-        if (!StringUtils.hasLength(message)) {
+        if (!StringUtils.hasText(message)) {
             result.setMessage(DEFAULT_FAIL_MESSAGE);
         } else {
             result.setMessage(message);

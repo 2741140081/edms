@@ -45,7 +45,7 @@ public class NewBeeMallCarouselController {
     @RequestMapping(value = "/carousels/save", method = RequestMethod.POST)
     @ResponseBody
     public Result save(@RequestBody Carousel carousel) {
-        if (!StringUtils.hasLength(carousel.getCarouselUrl()) || Objects.isNull(carousel.getCarouselRank())) {
+        if (!StringUtils.hasText(carousel.getCarouselUrl()) || Objects.isNull(carousel.getCarouselRank())) {
             return ResultGenerator.genFailResult("参数异常");
         }
         String result = newBeeMallCarouselService.saveCarousel(carousel);
@@ -59,7 +59,7 @@ public class NewBeeMallCarouselController {
     @RequestMapping(value = "/carousels/update", method = RequestMethod.POST)
     @ResponseBody
     public Result update(@RequestBody Carousel carousel) {
-        if (Objects.isNull(carousel.getCarouselId()) || !StringUtils.hasLength(carousel.getCarouselUrl()) || Objects.isNull(carousel.getCarouselRank())) {
+        if (Objects.isNull(carousel.getCarouselId()) || !StringUtils.hasText(carousel.getCarouselUrl()) || Objects.isNull(carousel.getCarouselRank())) {
             return ResultGenerator.genFailResult("参数异常");
         }
         String result = newBeeMallCarouselService.updateCarousel(carousel);

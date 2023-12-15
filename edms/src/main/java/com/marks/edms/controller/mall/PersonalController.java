@@ -39,22 +39,22 @@ public class PersonalController {
          * 使用StringUtils.hasLength()或者StringUtils.hasText()替代
          * 区别：hasLength对于空格有效，后者hasText对于空格无效，也就是说纯空格的字符串使用hasText也会返回false
          */
-        if (!StringUtils.hasLength(verifyCode)) {
+        if (!StringUtils.hasText(verifyCode)) {
             return ResultGenerator.genFailResult(ServiceResultEnum.LOGIN_VERIFY_CODE_NULL.getResult());
         }
 
-        if (!StringUtils.hasLength(loginName)) {
+        if (!StringUtils.hasText(loginName)) {
             return ResultGenerator.genFailResult(ServiceResultEnum.LOGIN_NAME_NULL.getResult());
         }
 
-        if (!StringUtils.hasLength(password)) {
+        if (!StringUtils.hasText(password)) {
             return ResultGenerator.genFailResult(ServiceResultEnum.LOGIN_PASSWORD_NULL.getResult());
         }
 
         //将验证码全部转为小写,再去进行比较
         verifyCode.toLowerCase();
         String kaptchaCode = httpSession.getAttribute("verifyCode") + "";
-        if (!StringUtils.hasLength(kaptchaCode) || !verifyCode.equals(kaptchaCode)) {
+        if (!StringUtils.hasText(kaptchaCode) || !verifyCode.equals(kaptchaCode)) {
             return ResultGenerator.genFailResult(ServiceResultEnum.LOGIN_VERIFY_CODE_ERROR.getResult());
         }
 
@@ -77,22 +77,22 @@ public class PersonalController {
          * 使用StringUtils.hasLength()或者StringUtils.hasText()替代
          * 区别：hasLength对于空格有效，后者hasText对于空格无效，也就是说纯空格的字符串使用hasText也会返回false
          */
-        if (!StringUtils.hasLength(verifyCode)) {
+        if (!StringUtils.hasText(verifyCode)) {
             return ResultGenerator.genFailResult(ServiceResultEnum.LOGIN_VERIFY_CODE_NULL.getResult());
         }
 
-        if (!StringUtils.hasLength(loginName)) {
+        if (!StringUtils.hasText(loginName)) {
             return ResultGenerator.genFailResult(ServiceResultEnum.LOGIN_NAME_NULL.getResult());
         }
 
-        if (!StringUtils.hasLength(password)) {
+        if (!StringUtils.hasText(password)) {
             return ResultGenerator.genFailResult(ServiceResultEnum.LOGIN_PASSWORD_NULL.getResult());
         }
 
         //将验证码全部转为小写,再去进行比较
         verifyCode.toLowerCase();
         String kaptchaCode = httpSession.getAttribute("verifyCode") + "";
-        if (!StringUtils.hasLength(kaptchaCode) || !verifyCode.equals(kaptchaCode)) {
+        if (!StringUtils.hasText(kaptchaCode) || !verifyCode.equals(kaptchaCode)) {
             return ResultGenerator.genFailResult(ServiceResultEnum.LOGIN_VERIFY_CODE_ERROR.getResult());
         }
 

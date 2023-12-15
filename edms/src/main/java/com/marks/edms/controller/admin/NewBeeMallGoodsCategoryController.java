@@ -84,7 +84,7 @@ public class NewBeeMallGoodsCategoryController {
     @RequestMapping(value = "/categories/save", method = RequestMethod.POST)
     @ResponseBody
     public Result save(@RequestBody GoodsCategory goodsCategory) {
-        if (!StringUtils.hasLength(goodsCategory.getCategoryName()) || Objects.isNull(goodsCategory.getCategoryLevel()) ||
+        if (!StringUtils.hasText(goodsCategory.getCategoryName()) || Objects.isNull(goodsCategory.getCategoryLevel()) ||
                 Objects.isNull(goodsCategory.getParentId()) || Objects.isNull(goodsCategory.getCategoryRank())) {
             return ResultGenerator.genFailResult("参数异常");
         }

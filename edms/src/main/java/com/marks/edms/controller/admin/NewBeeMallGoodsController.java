@@ -65,16 +65,16 @@ public class NewBeeMallGoodsController {
     @RequestMapping(value = "/goods/save", method = RequestMethod.POST)
     @ResponseBody
     public Result save(@RequestBody NewBeeMallGoods goods) {
-        if (!StringUtils.hasLength(goods.getGoodsName())
-                || !StringUtils.hasLength(goods.getGoodsIntro())
-                || !StringUtils.hasLength(goods.getTag())
+        if (!StringUtils.hasText(goods.getGoodsName())
+                || !StringUtils.hasText(goods.getGoodsIntro())
+                || !StringUtils.hasText(goods.getTag())
                 || Objects.isNull(goods.getOriginalPrice())
                 || Objects.isNull(goods.getSellingPrice())
                 || Objects.isNull(goods.getStockNum())
                 || Objects.isNull(goods.getGoodsCategoryId())
                 || Objects.isNull(goods.getGoodsSellStatus())
-                || !StringUtils.hasLength(goods.getGoodsCoverImg())
-                || !StringUtils.hasLength(goods.getGoodsDetailContent())) {
+                || !StringUtils.hasText(goods.getGoodsCoverImg())
+                || !StringUtils.hasText(goods.getGoodsDetailContent())) {
             return ResultGenerator.genFailResult("参数异常");
         }
 
@@ -174,16 +174,16 @@ public class NewBeeMallGoodsController {
     public Result update(HttpServletRequest request, @RequestBody NewBeeMallGoods goods) {
         Integer loginUserId = (Integer) request.getSession().getAttribute("loginUserId");
         goods.setUpdateUser(loginUserId);
-        if (!StringUtils.hasLength(goods.getGoodsName())
-                || !StringUtils.hasLength(goods.getGoodsIntro())
-                || !StringUtils.hasLength(goods.getTag())
+        if (!StringUtils.hasText(goods.getGoodsName())
+                || !StringUtils.hasText(goods.getGoodsIntro())
+                || !StringUtils.hasText(goods.getTag())
                 || Objects.isNull(goods.getOriginalPrice())
                 || Objects.isNull(goods.getSellingPrice())
                 || Objects.isNull(goods.getStockNum())
                 || Objects.isNull(goods.getGoodsCategoryId())
                 || Objects.isNull(goods.getGoodsSellStatus())
-                || !StringUtils.hasLength(goods.getGoodsCoverImg())
-                || !StringUtils.hasLength(goods.getGoodsDetailContent())) {
+                || !StringUtils.hasText(goods.getGoodsCoverImg())
+                || !StringUtils.hasText(goods.getGoodsDetailContent())) {
             return ResultGenerator.genFailResult("参数异常");
         }
 

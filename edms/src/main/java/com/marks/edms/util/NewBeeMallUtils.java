@@ -16,7 +16,7 @@ public class NewBeeMallUtils {
     }
 
     public static String cleanString(String value) {
-        if (!StringUtils.hasLength(value)) {
+        if (!StringUtils.hasText(value)) {
             return "";
         }
         value = value.toLowerCase();

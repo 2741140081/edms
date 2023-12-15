@@ -40,18 +40,18 @@ public class AdminController {
          * 使用StringUtils.hasLength()或者StringUtils.hasText()替代
          * 区别：hasLength对于空格有效，后者hasText对于空格无效，也就是说纯空格的字符串使用hasText也会返回false
          */
-        if (!StringUtils.hasLength(verifyCode)) {
+        if (!StringUtils.hasText(verifyCode)) {
             session.setAttribute("errorMsg","验证码不能为空");
             return "admin/login";
         }
-        if (!StringUtils.hasLength(userName) || !StringUtils.hasLength(password)) {
+        if (!StringUtils.hasText(userName) || !StringUtils.hasText(password)) {
             session.setAttribute("errorMsg","用户名或密码不能为空");
             return "admin/login";
         }
         //将验证码全部转为小写,再去进行比较
         verifyCode.toLowerCase();
         String kaptchaCode = session.getAttribute("verifyCode") + "";
-        if (!StringUtils.hasLength(kaptchaCode) || !verifyCode.equals(kaptchaCode)) {
+        if (!StringUtils.hasText(kaptchaCode) || !verifyCode.equals(kaptchaCode)) {
             session.setAttribute("errorMsg","验证码错误");
             return "admin/login";
         }
@@ -88,7 +88,7 @@ public class AdminController {
     @PostMapping("/profile/password")
     @ResponseBody
     public String passwordUpdate(HttpServletRequest request, @RequestParam("originalPassword") String originalPassowrd, @RequestParam("newPassword") String newPassword) {
-        if (!StringUtils.hasLength(originalPassowrd)) {
+        if (!StringUtils.hasText(originalPassowrd)) {
             return "参数不能为空";
         }
         Integer loginUserId = (Integer) request.getSession().getAttribute("loginUserId");
@@ -107,7 +107,7 @@ public class AdminController {
     @PostMapping("/profile/name")
     @ResponseBody
     public String nameUpdate(HttpServletRequest request, @RequestParam("loginUserName") String loginUserName, @RequestParam("nickName") String nickName) {
-        if (!StringUtils.hasLength(loginUserName) || !StringUtils.hasLength(nickName) ) {
+        if (!StringUtils.hasText(loginUserName) || !StringUtils.hasText(nickName) ) {
             return "参数不能为空";
         }
         Integer loginUserId = (Integer) request.getSession().getAttribute("loginUserId");

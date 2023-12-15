@@ -104,7 +104,7 @@ public class NewBeeMallOrderServiceImpl implements NewBeeMallOrderService {
                     errorOrderNos += newBeeMallOrder.getOrderNo() + " ";
                 }
             }
-            if (StringUtils.isEmpty(errorOrderNos)) {
+            if (StringUtils.hasText(errorOrderNos)) {
                 //订单状态正常 可以执行配货完成操作 修改订单状态和更新时间
                 if (newBeeMallOrderMapper.checkDone(Arrays.asList(ids)) > 0) {
                     return ServiceResultEnum.SUCCESS.getResult();
