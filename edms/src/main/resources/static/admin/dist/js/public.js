@@ -77,6 +77,17 @@ function validPhoneNumber(phone) {
 }
 
 /**
+ * 邮件地址正则验证
+ * @returns {boolean}
+ */
+function validEmailAddress(email) {
+    if ((/^([a-zA-Z]|[0-9])(\w|\-)+@[a-zA-Z0-9]+\.([a-zA-Z]{2,4})$/.test(email))) {
+        return true;
+    }
+    return false;
+}
+
+/**
  * 正则匹配2-18位的中英文字符串
  *
  * @param str

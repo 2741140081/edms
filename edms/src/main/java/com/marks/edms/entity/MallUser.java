@@ -25,10 +25,21 @@ public class MallUser {
     @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss", timezone = "GMT+8")
     private Date createTime;
 
+    private String userEmail;
+
+    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss", timezone = "GMT+8")
+    private Date passwordUpdateTime;
+
+    private String oldPassword1;
+
+    private String oldPassword2;
+
+    private String oldPassword3;
+
     public MallUser() {
     }
 
-    public MallUser(Long userId, String nickName, String loginName, String passwordMd5, String introduceSign, String address, Byte isDeleted, Byte lockedFlag, Date createTime) {
+    public MallUser(Long userId, String nickName, String loginName, String passwordMd5, String introduceSign, String address, Byte isDeleted, Byte lockedFlag, Date createTime, String userEmail, Date passwordUpdateTime, String oldPassword1, String oldPassword2, String oldPassword3) {
         this.userId = userId;
         this.nickName = nickName;
         this.loginName = loginName;
@@ -38,6 +49,11 @@ public class MallUser {
         this.isDeleted = isDeleted;
         this.lockedFlag = lockedFlag;
         this.createTime = createTime;
+        this.userEmail = userEmail;
+        this.passwordUpdateTime = passwordUpdateTime;
+        this.oldPassword1 = oldPassword1;
+        this.oldPassword2 = oldPassword2;
+        this.oldPassword3 = oldPassword3;
     }
 
     public Long getUserId() {
@@ -112,6 +128,46 @@ public class MallUser {
         this.createTime = createTime;
     }
 
+    public String getUserEmail() {
+        return userEmail;
+    }
+
+    public void setUserEmail(String userEmail) {
+        this.userEmail = userEmail;
+    }
+
+    public Date getPasswordUpdateTime() {
+        return passwordUpdateTime;
+    }
+
+    public void setPasswordUpdateTime(Date passwordUpdateTime) {
+        this.passwordUpdateTime = passwordUpdateTime;
+    }
+
+    public String getOldPassword1() {
+        return oldPassword1;
+    }
+
+    public void setOldPassword1(String oldPassword1) {
+        this.oldPassword1 = oldPassword1;
+    }
+
+    public String getOldPassword2() {
+        return oldPassword2;
+    }
+
+    public void setOldPassword2(String oldPassword2) {
+        this.oldPassword2 = oldPassword2;
+    }
+
+    public String getOldPassword3() {
+        return oldPassword3;
+    }
+
+    public void setOldPassword3(String oldPassword3) {
+        this.oldPassword3 = oldPassword3;
+    }
+
     @Override
     public String toString() {
         return "MallUser{" +
@@ -124,6 +180,11 @@ public class MallUser {
                 ", isDeleted=" + isDeleted +
                 ", lockedFlag=" + lockedFlag +
                 ", createTime=" + createTime +
+                ", userEmail='" + userEmail + '\'' +
+                ", passwordUpdateTime=" + passwordUpdateTime +
+                ", oldPassword1='" + oldPassword1 + '\'' +
+                ", oldPassword2='" + oldPassword2 + '\'' +
+                ", oldPassword3='" + oldPassword3 + '\'' +
                 '}';
     }
 }

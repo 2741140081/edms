@@ -12,16 +12,22 @@
         <result column="is_deleted" jdbcType="TINYINT" property="isDeleted" />
         <result column="locked_flag" jdbcType="TINYINT" property="lockedFlag" />
         <result column="create_time" jdbcType="TIMESTAMP" property="createTime"/>
+        <result column="user_email" jdbcType="VARCHAR" property="userEmail" />
+        <result column="password_update_time" jdbcType="TIMESTAMP" property="passwordUpdateTime"/>
+        <result column="old_password_1" jdbcType="VARCHAR" property="oldPassword1" />
+        <result column="old_password_2" jdbcType="VARCHAR" property="oldPassword2" />
+        <result column="old_password_3" jdbcType="VARCHAR" property="oldPassword3" />
     </resultMap>
 
     <sql id="Base_Column_List">
-        user_id, nick_name, login_name, password_md5, introduce_sign, address, is_deleted, locked_flag, create_time
+        user_id, nick_name, login_name, password_md5, introduce_sign, address, is_deleted, locked_flag, create_time,
+        user_email, password_update_time, old_password_1, old_password_2, old_password_3
     </sql>
 
     <insert id="insert" parameterType="com.marks.edms.entity.MallUser">
         insert into tb_newbee_mall_user
         (user_id, nick_name, login_name, password_md5, introduce_sign,
-        address, is_deleted, locked_flag, create_time)
+        address, is_deleted, locked_flag, create_time, user_email, password_update_time, old_password_1)
         values
         (#{userId,jdbcType=BIGINT}, #{nickName,jdbcType=VARCHAR}, #{loginName,jdbcType=VARCHAR},
         #{passwordMd5,jdbcType=VARCHAR}, #{introduceSign,jdbcType=VARCHAR}, #{address,jdbcType=VARCHAR},

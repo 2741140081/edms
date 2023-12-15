@@ -30,6 +30,11 @@ public class PersonalController {
         return "/mall/register";
     }
 
+    @GetMapping({"/reset", "reset.html"})
+    public String resetPasswordPage() {
+        return "/mall/reset";
+    }
+
 
     @PostMapping("/register")
     @ResponseBody
@@ -59,6 +64,43 @@ public class PersonalController {
         }
 
         String registerResult = newBeeMallUserService.register(loginName, password);
+
+        if (registerResult.equals(ServiceResultEnum.SUCCESS.getResult())) {
+            //注册成功
+            httpSession.removeAttribute(Constants.MALL_VERIFY_CODE_KEY);
+            return ResultGenerator.genSuccessResult();
+        }
+        return ResultGenerator.genFailResult(registerResult);
+    }
+
+    @PostMapping("/resetPassword")
+    @ResponseBody
+    public Result resetPassword(@RequestParam("loginName") String loginName, @RequestParam("verifyCode") String verifyCode,
+                           @RequestParam("userEmail") String userEmail, HttpSession httpSession) {
+        /**StringUtils.isEmpty()已经被弃用(deprecated)
+         * 使用StringUtils.hasLength()或者StringUtils.hasText()替代
+         * 区别：hasLength对于空格有效，后者hasText对于空格无效，也就是说纯空格的字符串使用hasText也会返回false
+         */
+        if (!StringUtils.hasText(verifyCode)) {
+            return ResultGenerator.genFailResult(ServiceResultEnum.LOGIN_VERIFY_CODE_NULL.getResult());
+        }
+
+        if (!StringUtils.hasText(loginName)) {
+            return ResultGenerator.genFailResult(ServiceResultEnum.LOGIN_NAME_NULL.getResult());
+        }
+
+        if (!StringUtils.hasText(userEmail)) {
+            return ResultGenerator.genFailResult(ServiceResultEnum.USER_EMAIL_NULL.getResult());
+        }
+
+        //将验证码全部转为小写,再去进行比较
+        verifyCode.toLowerCase();
+        String kaptchaCode = httpSession.getAttribute("verifyCode") + "";
+        if (!StringUtils.hasText(kaptchaCode) || !verifyCode.equals(kaptchaCode)) {
+            return ResultGenerator.genFailResult(ServiceResultEnum.LOGIN_VERIFY_CODE_ERROR.getResult());
+        }
+
+        String registerResult = newBeeMallUserService.register(loginName, userEmail);
 
         if (registerResult.equals(ServiceResultEnum.SUCCESS.getResult())) {
             //注册成功

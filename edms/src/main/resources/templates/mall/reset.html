@@ -3,7 +3,7 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>NewBee商城-登录</title>
+    <title>NewBee商城-忘记密码</title>
     <link rel="stylesheet" th:href="@{mall/css/common.css}">
     <link rel="stylesheet" th:href="@{mall/styles/login.css}">
     <link rel="stylesheet" th:href="@{mall/styles/header.css}">
@@ -15,40 +15,33 @@
         <a href="./index.html" target="_blank"><img src="mall/image/login-logo-2.png" alt=""></a>
     </div>
 </div>
+
 <div class="form center">
     <div class="login">
         <div class="login_center">
             <div class="login_top">
-                <div class="left fl">会员登录</div>
-                <div class="right fr">您还不是我们的会员？<a href="register.html" target="_self">立即注册</a></div>
+                <div class="left fl">忘记密码</div>
                 <div class="clear"></div>
                 <div class="under-line center"></div>
             </div>
-            <form id="loginForm" onsubmit="return false;" action="##">
+            <form id="resetPasswordForm" onsubmit="return false;" action="##">
                 <div class="login_main center">
                     <div class="login-info">手机号:&nbsp;<input class="login-info-input" type="text" name="loginName"
-                                                             id="loginName"
-                                                             placeholder="请输入你的手机号"/>
+                                                             placeholder="请输入你的手机号" id="loginName"/>
                     </div>
-                    <div class="login-info">密&nbsp;&nbsp;&nbsp;&nbsp;码:&nbsp;<input class="login-info-input"
-                                                                                    id="password"
-                                                                                    type="password"
-                                                                                    name="password"
-                                                                                    placeholder="请输入你的密码"/></div>
+                    <div class="login-info">邮&nbsp;&nbsp;&nbsp;&nbsp;箱:&nbsp;<input class="login-info-input" type="email" name="userEmail"
+                                                                                    id="userEmail" placeholder="请输入你的邮箱"/>
+                    </div>
                     <div class="login-info">
                         验证码:&nbsp;
-                        <input class="login-info-input verify-code" type="text" name="verifyCode"
-                               placeholder="请输入验证码" id="verifyCode"/>
+                        <input class="login-info-input verify-code" type="text" name="verifyCode" id="verifyCode"
+                               placeholder="请输入验证码"/>
                         <img alt="单击图片刷新！" style="top: 16px;position: relative;" th:src="@{/common/mall/kaptcha}"
                              onclick="this.src='/common/mall/kaptcha?d='+new Date()*1">
                     </div>
                 </div>
                 <div class="login_submit">
-                    <input class="submit" type="submit" onclick="login()" value="立即登录">
-
-                </div>
-                <div class="right fr forget_password">
-                    <a href="reset.html" target="_self">忘记密码</a>
+                    <input class="submit" type="button" onclick="resetPassword()" value="重置密码">
                 </div>
             </form>
         </div>
@@ -60,7 +53,9 @@
 <script th:src="@{/admin/dist/js/public.js}"></script>
 <script th:src="@{/admin/plugins/sweetalert/sweetalert.min.js}"></script>
 <script type="text/javascript">
-    function login() {
+
+    //注册按钮onclick事件改为register()即可
+    function resetPassword() {
         var loginName = $("#loginName").val();
         if (!validPhoneNumber(loginName)) {
             swal('请输入正确的登录名(即手机号)', {
@@ -68,13 +63,15 @@
             });
             return false;
         }
-        var password = $("#password").val();
-        if (!validPassword(password)) {
-            swal('请输入正确的密码格式(6-20位字符和数字组合)', {
+
+        var userEmail = $("#userEmail").val();
+        if (!validEmailAddress(userEmail)) {
+            swal('请输入正确的邮箱地址', {
                 icon: "error",
             });
             return false;
         }
+
         var verifyCode = $("#verifyCode").val();
         if (!validLength(verifyCode, 5)) {
             swal('请输入正确的验证码', {
@@ -83,15 +80,27 @@
             return false;
         }
         //验证
-        var params = $("#loginForm").serialize();
-        var url = '/login';
+        var params = $("#resetPasswordForm").serialize();
+        var url = '/resetPassword';
         $.ajax({
             type: 'POST',//方法类型
             url: url,
             data: params,
             success: function (result) {
                 if (result.resultCode == 200) {
-                    window.location.href = '/index';
+                    swal({
+                        title: "重置密码成功, 你的密码已重置请注意查收邮件",
+                        text: "是否跳转至登录页?",
+                        icon: "success",
+                        buttons: true,
+                        dangerMode: true,
+                    }).then((flag) => {
+                            if (flag) {
+                                window.location.href = '/login';
+                            }
+                        }
+                    )
+                    ;
                 } else {
                     swal(result.message, {
                         icon: "error",

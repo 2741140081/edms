@@ -20,6 +20,7 @@ public enum ServiceResultEnum {
 
     LOGIN_PASSWORD_NULL("请输入密码！"),
 
+    USER_EMAIL_NULL("请输入邮箱地址"),
     LOGIN_VERIFY_CODE_NULL("请输入验证码！"),
 
     LOGIN_VERIFY_CODE_ERROR("验证码错误！"),
