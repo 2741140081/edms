@@ -1,5 +1,6 @@
 package com.marks.edms.service.impl;
 
+import com.baomidou.dynamic.datasource.annotation.DS;
 import com.marks.edms.common.Constants;
 import com.marks.edms.common.ServiceResultEnum;
 import com.marks.edms.controller.vo.NewBeeMallUserVO;
@@ -19,6 +20,7 @@ import java.util.Date;
 import java.util.List;
 
 @Service
+@DS("mall")
 public class NewBeeMallUserServiceImpl implements NewBeeMallUserService {
     @Autowired
     private MallUserMapper userMapper;

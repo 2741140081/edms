@@ -148,6 +148,13 @@
 			<artifactId>commons-lang3</artifactId>
 		</dependency>
 
+		<dependency>
+			<groupId>com.baomidou</groupId>
+			<artifactId>dynamic-datasource-spring-boot-starter</artifactId>
+			<version>3.5.0</version>
+		</dependency>
+        <!--原文链接：https://blog.csdn.net/qq_34469175/article/details/128039343-->
+
 	</dependencies>
 
 	<build>

@@ -1,5 +1,6 @@
 package com.marks.edms.service.impl;
 
+import com.baomidou.dynamic.datasource.annotation.DS;
 import com.marks.edms.common.Constants;
 import com.marks.edms.common.NewBeeMallCategoryLevelEnum;
 import com.marks.edms.common.ServiceResultEnum;
@@ -22,6 +23,7 @@ import java.util.stream.Collectors;
 
 
 @Service
+@DS("mall")
 public class NewBeeMallCategoryServiceImpl implements NewBeeMallCategoryService {
 
     @Autowired

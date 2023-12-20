@@ -1,5 +1,6 @@
 package com.marks.edms.service.impl;
 
+import com.baomidou.dynamic.datasource.annotation.DS;
 import com.marks.edms.common.ServiceResultEnum;
 import com.marks.edms.controller.vo.NewBeeMallIndexCarouselVO;
 import com.marks.edms.dao.CarouselMapper;
@@ -17,6 +18,7 @@ import java.util.Date;
 import java.util.List;
 
 @Service
+@DS("mall")
 public class NewBeeMallCarouselServiceImpl implements NewBeeMallCarouselService {
     @Autowired
     private CarouselMapper carouselMapper;

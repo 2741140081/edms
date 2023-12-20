@@ -31,6 +31,7 @@ public class DocumentDefinition {
 
         String str_476 = "dd.num_Field01 AS 'Total Amount (RMB)', dd.num_Field02 AS 'Total Amount (HK$)', dd.text_Field01 AS 'Works Order Number', dd.text_Field02 AS 'Contract Name', dd.text_Field03 AS 'Contracting Party'";
         String str_372 = "dd.text_Field01 AS 'Customer Name', dd.text_Field02 AS 'Project Description', dd.num_Field01 AS 'TCV (RMB)', dd.text_Field03 AS 'Account Manager', dd.text_Field04 AS 'Entity', dd.text_Field05 AS 'CWL', dd.text_Field06 AS 'GAF', dd.text_Field07 AS 'IGC', dd.text_Field08 AS 'Cash Flow Mismatch', dd.text_Field09 AS 'TWO'";
+        String str_397 = "dd.text_Field01 AS 'F80601 RefNo', dd.text_Field02 AS 'Project Unit', dd.text_Field03 AS 'Control CCC', dd.text_Field04 AS 'Branch Code - Name', dd.text_Field05 AS 'Project Type', dd.date_Field02 AS 'RFS Date', dd.text_Field06 AS 'Remark', dd.num_Field05 AS 'Total CAPEX Amount', dd.text_Field07 AS 'Currency'";
 
         char[] chars_637 = str_637.toCharArray();
         char[] chars_625 = str_625.toCharArray();
@@ -48,20 +49,22 @@ public class DocumentDefinition {
         char[] chars_374 = str_374.toCharArray();
         char[] chars_476 = str_476.toCharArray();
         char[] chars_372 = str_372.toCharArray();
+        char[] chars_397 = str_397.toCharArray();
 //        printSomething(chars_637);
 //        printSomething(chars_638);
 //        printSomething(chars_639);
 //        printSomething(chars_625);
 //        printSomething(chars_474);
-        printSomething(chars_374);
+//        printSomething(chars_374);
 //        printSomething(chars_476);
 //        printSomething(chars_372);
-//        printSomething(chars_360);
+        printSomething(chars_360);
 //        printSomething(chars_546);
 //        printSomething(chars_547);
 //        printSomething(chars_548);
 //        printSomething(chars_549);
 //        printSomething(chars_641);
+//        printSomething(chars_397);
 
     }
 

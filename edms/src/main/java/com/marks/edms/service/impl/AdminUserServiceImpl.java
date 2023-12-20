@@ -1,5 +1,6 @@
 package com.marks.edms.service.impl;
 
+import com.baomidou.dynamic.datasource.annotation.DS;
 import com.marks.edms.dao.AdminUserMapper;
 import com.marks.edms.entity.AdminUser;
 import com.marks.edms.service.AdminUserService;
@@ -9,6 +10,7 @@ import org.springframework.stereotype.Service;
 import javax.annotation.Resource;
 
 @Service
+@DS("mall")
 public class AdminUserServiceImpl implements AdminUserService {
     @Resource
     private AdminUserMapper adminUserMapper;

@@ -1,5 +1,6 @@
 package com.marks.edms.service.impl;
 
+import com.baomidou.dynamic.datasource.annotation.DS;
 import com.marks.edms.common.Constants;
 import com.marks.edms.common.ServiceResultEnum;
 import com.marks.edms.controller.vo.NewBeeMallShoppingCartItemVO;
@@ -20,6 +21,7 @@ import java.util.function.Function;
 import java.util.stream.Collectors;
 
 @Service
+@DS("mall")
 public class NewBeeMallShoppingCartServiceImpl implements NewBeeMallShoppingCartService {
 
     @Autowired

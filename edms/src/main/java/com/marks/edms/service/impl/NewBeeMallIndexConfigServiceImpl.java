@@ -1,5 +1,6 @@
 package com.marks.edms.service.impl;
 
+import com.baomidou.dynamic.datasource.annotation.DS;
 import com.marks.edms.common.ServiceResultEnum;
 import com.marks.edms.controller.vo.NewBeeMallIndexConfigGoodsVO;
 import com.marks.edms.dao.IndexConfigMapper;
@@ -19,6 +20,7 @@ import java.util.Date;
 import java.util.List;
 import java.util.stream.Collectors;
 @Service
+@DS("mall")
 public class NewBeeMallIndexConfigServiceImpl implements NewBeeMallIndexConfigService {
 
     @Autowired
