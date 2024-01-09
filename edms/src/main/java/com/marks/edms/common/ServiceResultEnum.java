@@ -43,6 +43,8 @@ public enum ServiceResultEnum {
 
     LOGIN_USER_LOCKED("用户已被禁止登录！"),
 
+    USER_NEED_RESET_PASSWORD("用户需要重置密码"),
+
     ORDER_NOT_EXIST_ERROR("订单不存在！"),
 
     ORDER_ITEM_NOT_EXIST_ERROR("订单项不存在！"),

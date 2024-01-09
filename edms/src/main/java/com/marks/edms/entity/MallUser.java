@@ -36,10 +36,12 @@ public class MallUser {
 
     private String oldPassword3;
 
+    private char passwordStatus;
+
     public MallUser() {
     }
 
-    public MallUser(Long userId, String nickName, String loginName, String passwordMd5, String introduceSign, String address, Byte isDeleted, Byte lockedFlag, Date createTime, String userEmail, Date passwordUpdateTime, String oldPassword1, String oldPassword2, String oldPassword3) {
+    public MallUser(Long userId, String nickName, String loginName, String passwordMd5, String introduceSign, String address, Byte isDeleted, Byte lockedFlag, Date createTime, String userEmail, Date passwordUpdateTime, String oldPassword1, String oldPassword2, String oldPassword3, char passwordStatus) {
         this.userId = userId;
         this.nickName = nickName;
         this.loginName = loginName;
@@ -54,6 +56,7 @@ public class MallUser {
         this.oldPassword1 = oldPassword1;
         this.oldPassword2 = oldPassword2;
         this.oldPassword3 = oldPassword3;
+        this.passwordStatus = passwordStatus;
     }
 
     public Long getUserId() {
@@ -168,6 +171,14 @@ public class MallUser {
         this.oldPassword3 = oldPassword3;
     }
 
+    public char getPasswordStatus() {
+        return passwordStatus;
+    }
+
+    public void setPasswordStatus(char passwordStatus) {
+        this.passwordStatus = passwordStatus;
+    }
+
     @Override
     public String toString() {
         return "MallUser{" +
@@ -185,6 +196,7 @@ public class MallUser {
                 ", oldPassword1='" + oldPassword1 + '\'' +
                 ", oldPassword2='" + oldPassword2 + '\'' +
                 ", oldPassword3='" + oldPassword3 + '\'' +
+                ", passwordStatus=" + passwordStatus +
                 '}';
     }
 }

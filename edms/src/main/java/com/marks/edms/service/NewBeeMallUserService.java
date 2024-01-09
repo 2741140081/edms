@@ -21,7 +21,8 @@ public interface NewBeeMallUserService {
      * @param password
      * @return
      */
-    String register(String loginName, String password);
+
+    String register(String loginName, String password, String userEmail);
 
     /**
      * 登录

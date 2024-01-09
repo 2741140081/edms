@@ -46,7 +46,7 @@ public class NewBeeMallUserServiceImpl implements NewBeeMallUserService {
      * @return
      */
     @Override
-    public String register(String loginName, String password) {
+    public String register(String loginName, String password, String userEmail) {
         // 判断用户是否存在
         MallUser mallUser = userMapper.selectByLoginName(loginName);
         if (mallUser != null) {
@@ -64,6 +64,10 @@ public class NewBeeMallUserServiceImpl implements NewBeeMallUserService {
         registerUser.setCreateTime(new Date());
         registerUser.setIsDeleted((byte) 0);
         registerUser.setLockedFlag((byte) 0);
+        registerUser.setUserEmail(userEmail);
+        registerUser.setPasswordUpdateTime(new Date());
+        registerUser.setPasswordStatus('C');
+        registerUser.setOldPassword1(encryptedPassword);
         int flag = userMapper.insertSelective(registerUser);
         if (flag > 0) {
             return ServiceResultEnum.SUCCESS.getResult();
@@ -84,7 +88,7 @@ public class NewBeeMallUserServiceImpl implements NewBeeMallUserService {
         BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
         MallUser mallUser = userMapper.selectByLoginName(loginName);
         if (mallUser != null && httpSession != null) {
-            // 判断用户是否为锁定状态
+            // 判断用户密码是否一致
             boolean matchFlag = encoder.matches(passwordMD5, mallUser.getPasswordMd5());
             if (!matchFlag) {
                 return ServiceResultEnum.LOGIN_PASSWORD_ERROR.getResult();
@@ -92,6 +96,10 @@ public class NewBeeMallUserServiceImpl implements NewBeeMallUserService {
             // 判断用户是否为锁定状态
             if (mallUser.getLockedFlag() == 1) {
                 return ServiceResultEnum.LOGIN_USER_LOCKED.getResult();
+            }
+            // 判断用户是否需要进行更新密码, 'R'表示需要 Reset Password
+            if (mallUser.getPasswordStatus() == 'R') {
+                return ServiceResultEnum.USER_NEED_RESET_PASSWORD.getResult();
             }
 
             NewBeeMallUserVO newBeeMallUserVO = new NewBeeMallUserVO();

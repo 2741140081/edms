@@ -39,7 +39,7 @@ public class PersonalController {
     @PostMapping("/register")
     @ResponseBody
     public Result register(@RequestParam("loginName") String loginName, @RequestParam("verifyCode") String verifyCode,
-                           @RequestParam("password") String password, HttpSession httpSession) {
+                           @RequestParam("password") String password,@RequestParam("userEmail") String userEmail, HttpSession httpSession) {
         /**StringUtils.isEmpty()已经被弃用(deprecated)
          * 使用StringUtils.hasLength()或者StringUtils.hasText()替代
          * 区别：hasLength对于空格有效，后者hasText对于空格无效，也就是说纯空格的字符串使用hasText也会返回false
@@ -63,7 +63,7 @@ public class PersonalController {
             return ResultGenerator.genFailResult(ServiceResultEnum.LOGIN_VERIFY_CODE_ERROR.getResult());
         }
 
-        String registerResult = newBeeMallUserService.register(loginName, password);
+        String registerResult = newBeeMallUserService.register(loginName, password, userEmail);
 
         if (registerResult.equals(ServiceResultEnum.SUCCESS.getResult())) {
             //注册成功
@@ -100,7 +100,7 @@ public class PersonalController {
             return ResultGenerator.genFailResult(ServiceResultEnum.LOGIN_VERIFY_CODE_ERROR.getResult());
         }
 
-        String registerResult = newBeeMallUserService.register(loginName, userEmail);
+        String registerResult = newBeeMallUserService.register(loginName, userEmail, userEmail);
 
         if (registerResult.equals(ServiceResultEnum.SUCCESS.getResult())) {
             //注册成功

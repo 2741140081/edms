@@ -17,11 +17,12 @@
         <result column="old_password_1" jdbcType="VARCHAR" property="oldPassword1" />
         <result column="old_password_2" jdbcType="VARCHAR" property="oldPassword2" />
         <result column="old_password_3" jdbcType="VARCHAR" property="oldPassword3" />
+        <result column="password_status" jdbcType="CHAR" property="passwordStatus"/>
     </resultMap>
 
     <sql id="Base_Column_List">
         user_id, nick_name, login_name, password_md5, introduce_sign, address, is_deleted, locked_flag, create_time,
-        user_email, password_update_time, old_password_1, old_password_2, old_password_3
+        user_email, password_update_time, old_password_1, old_password_2, old_password_3, password_status
     </sql>
 
     <insert id="insert" parameterType="com.marks.edms.entity.MallUser">
@@ -31,7 +32,8 @@
         values
         (#{userId,jdbcType=BIGINT}, #{nickName,jdbcType=VARCHAR}, #{loginName,jdbcType=VARCHAR},
         #{passwordMd5,jdbcType=VARCHAR}, #{introduceSign,jdbcType=VARCHAR}, #{address,jdbcType=VARCHAR},
-        #{isDeleted,jdbcType=TINYINT}, #{lockedFlag,jdbcType=TINYINT}, #{createTime,jdbcType=TIMESTAMP})
+        #{isDeleted,jdbcType=TINYINT}, #{lockedFlag,jdbcType=TINYINT}, #{createTime,jdbcType=TIMESTAMP},
+        #{userEmail,jdbcType=VARCHAR}, #{passwordUpdateTime,jdbcType=TIMESTAMP}, #{oldPassword1,jdbcType=VARCHAR}, #{passwordStatus,jdbcType=CHAR})
     </insert>
 
     <insert id="insertSelective" parameterType="com.marks.edms.entity.MallUser">
@@ -64,6 +66,24 @@
             <if test="createTime != null">
                 create_time,
             </if>
+            <if test="userEmail != null">
+                user_email,
+            </if>
+            <if test="passwordUpdateTime != null">
+                password_update_time,
+            </if>
+            <if test="oldPassword1 != null">
+                old_password_1,
+            </if>
+            <if test="oldPassword2 != null">
+                old_password_2,
+            </if>
+            <if test="oldPassword3 != null">
+                old_password_3,
+            </if>
+            <if test="passwordStatus != null">
+                password_status,
+            </if>
         </trim>
         <trim prefix="values (" suffix=")" suffixOverrides=",">
             <if test="userId != null">
@@ -93,8 +113,27 @@
             <if test="createTime != null">
                 #{createTime,jdbcType=TIMESTAMP},
             </if>
+            <if test="userEmail != null">
+                #{userEmail,jdbcType=VARCHAR},
+            </if>
+            <if test="passwordUpdateTime != null">
+                #{passwordUpdateTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="oldPassword1 != null">
+                #{oldPassword1,jdbcType=VARCHAR}
+            </if>
+            <if test="oldPassword2 != null">
+                #{oldPassword2,jdbcType=VARCHAR}
+            </if>
+            <if test="oldPassword3 != null">
+                #{oldPassword3,jdbcType=VARCHAR}
+            </if>
+            <if test="passwordStatus != null">
+                #{password_status,jdbcType=CHAR},
+            </if>
         </trim>
     </insert>
+
 
     <select id="selectByLoginNameAndPasswd" resultMap="BaseResultMap">
         select
