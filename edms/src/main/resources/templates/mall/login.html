@@ -1,4 +1,3 @@
-<!-- Copyright (c) 2019-2020 十三 all rights reserved. -->
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
@@ -44,8 +43,7 @@
                     </div>
                 </div>
                 <div class="login_submit">
-                    <input class="submit" type="submit" onclick="login()" value="立即登录">
-
+                    <input class="submit" type="submit" onclick="login()" value="立即登录"/>
                 </div>
                 <div class="right fr forget_password">
                     <a href="reset.html" target="_self">忘记密码</a>
@@ -54,9 +52,10 @@
         </div>
     </div>
 </div>
-</body>
+
 <!-- jQuery -->
-<script th:src="@{/admin/plugins/jquery/jquery.min.js}"></script>
+<!--<script src="https://code.jquery.com/jquery-3.3.1.js" integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60=" crossorigin="anonymous"></script>-->
+<script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
 <script th:src="@{/admin/dist/js/public.js}"></script>
 <script th:src="@{/admin/plugins/sweetalert/sweetalert.min.js}"></script>
 <script type="text/javascript">
@@ -92,12 +91,13 @@
             success: function (result) {
                 if (result.resultCode == 200) {
                     window.location.href = '/index';
+                } else if(result.resultCode == 210) {
+                    window.location.href = '/changeUserPassword';
                 } else {
                     swal(result.message, {
                         icon: "error",
                     });
-                }
-                ;
+                };
             },
             error: function () {
                 swal("操作失败", {
@@ -107,4 +107,5 @@
         });
     }
 </script>
+</body>
 </html>

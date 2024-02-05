@@ -5,6 +5,8 @@ public enum ServiceResultEnum {
 
     SUCCESS("success"),
 
+    NEED_RESET_PASSWORD("需要重置密码"),
+
     DATA_NOT_EXIST("未查询到记录！"),
 
     SAME_CATEGORY_EXIST("已存在同级同名的分类！"),

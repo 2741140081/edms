@@ -17,7 +17,7 @@ public class NewBeeMallLoginInterceptor implements HandlerInterceptor {
 
     @Override
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
-        LOG.info("进入拦截器");
+        LOG.info("进入NewBeeMallLoginInterceptor拦截器");
         if (null == request.getSession().getAttribute(Constants.MALL_USER_SESSION_KEY) ) {
             response.sendRedirect(request.getContextPath() + "/login");
             return false;

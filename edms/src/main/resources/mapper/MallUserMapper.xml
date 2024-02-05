@@ -120,16 +120,16 @@
                 #{passwordUpdateTime,jdbcType=TIMESTAMP},
             </if>
             <if test="oldPassword1 != null">
-                #{oldPassword1,jdbcType=VARCHAR}
+                #{oldPassword1,jdbcType=VARCHAR},
             </if>
             <if test="oldPassword2 != null">
-                #{oldPassword2,jdbcType=VARCHAR}
+                #{oldPassword2,jdbcType=VARCHAR},
             </if>
             <if test="oldPassword3 != null">
-                #{oldPassword3,jdbcType=VARCHAR}
+                #{oldPassword3,jdbcType=VARCHAR},
             </if>
             <if test="passwordStatus != null">
-                #{password_status,jdbcType=CHAR},
+                #{passwordStatus,jdbcType=CHAR},
             </if>
         </trim>
     </insert>

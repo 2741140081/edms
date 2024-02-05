@@ -18,7 +18,6 @@ import java.util.Date;
 import java.util.List;
 
 @Service
-@DS("mall")
 public class NewBeeMallCarouselServiceImpl implements NewBeeMallCarouselService {
     @Autowired
     private CarouselMapper carouselMapper;

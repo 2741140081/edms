@@ -23,7 +23,6 @@ import java.util.stream.Collectors;
 
 
 @Service
-@DS("mall")
 public class NewBeeMallCategoryServiceImpl implements NewBeeMallCategoryService {
 
     @Autowired

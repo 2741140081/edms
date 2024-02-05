@@ -39,13 +39,17 @@ public class PersonalController {
     @PostMapping("/register")
     @ResponseBody
     public Result register(@RequestParam("loginName") String loginName, @RequestParam("verifyCode") String verifyCode,
-                           @RequestParam("password") String password,@RequestParam("userEmail") String userEmail, HttpSession httpSession) {
+                           @RequestParam("password") String password,@RequestParam("emailAddress") String userEmail, HttpSession httpSession) {
         /**StringUtils.isEmpty()已经被弃用(deprecated)
          * 使用StringUtils.hasLength()或者StringUtils.hasText()替代
          * 区别：hasLength对于空格有效，后者hasText对于空格无效，也就是说纯空格的字符串使用hasText也会返回false
          */
         if (!StringUtils.hasText(verifyCode)) {
             return ResultGenerator.genFailResult(ServiceResultEnum.LOGIN_VERIFY_CODE_NULL.getResult());
+        }
+
+        if (!StringUtils.hasText(userEmail)) {
+            return ResultGenerator.genFailResult(ServiceResultEnum.LOGIN_NAME_NULL.getResult());
         }
 
         if (!StringUtils.hasText(loginName)) {
@@ -141,9 +145,12 @@ public class PersonalController {
         String loginResult = newBeeMallUserService.login(loginName, password, httpSession);
 
         if (loginResult.equals(ServiceResultEnum.SUCCESS.getResult())) {
-            //注册成功
+            //验证登录成功
             httpSession.removeAttribute(Constants.MALL_VERIFY_CODE_KEY);
             return ResultGenerator.genSuccessResult();
+        } else if (loginResult.equals(ServiceResultEnum.NEED_RESET_PASSWORD.getResult())) {
+            httpSession.removeAttribute(Constants.MALL_VERIFY_CODE_KEY);
+            return ResultGenerator.genResetPasswordResult();
         }
         return ResultGenerator.genFailResult(loginResult);
     }

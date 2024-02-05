@@ -20,7 +20,6 @@ import java.util.Date;
 import java.util.List;
 
 @Service
-@DS("mall")
 public class NewBeeMallUserServiceImpl implements NewBeeMallUserService {
     @Autowired
     private MallUserMapper userMapper;
@@ -66,8 +65,8 @@ public class NewBeeMallUserServiceImpl implements NewBeeMallUserService {
         registerUser.setLockedFlag((byte) 0);
         registerUser.setUserEmail(userEmail);
         registerUser.setPasswordUpdateTime(new Date());
-        registerUser.setPasswordStatus('C');
         registerUser.setOldPassword1(encryptedPassword);
+        registerUser.setPasswordStatus('C');
         int flag = userMapper.insertSelective(registerUser);
         if (flag > 0) {
             return ServiceResultEnum.SUCCESS.getResult();
@@ -98,15 +97,19 @@ public class NewBeeMallUserServiceImpl implements NewBeeMallUserService {
                 return ServiceResultEnum.LOGIN_USER_LOCKED.getResult();
             }
             // 判断用户是否需要进行更新密码, 'R'表示需要 Reset Password
-            if (mallUser.getPasswordStatus() == 'R') {
-                return ServiceResultEnum.USER_NEED_RESET_PASSWORD.getResult();
-            }
 
             NewBeeMallUserVO newBeeMallUserVO = new NewBeeMallUserVO();
             BeanUtil.copyProperties(mallUser, newBeeMallUserVO);
             httpSession.setAttribute(Constants.MALL_USER_SESSION_KEY, newBeeMallUserVO);
 
-            return ServiceResultEnum.SUCCESS.getResult();
+            // 判断用户是否需要进行更新密码, 'R'表示需要 Reset Password, C表示改用户新建，由系统发送初始密码，需要用户更改密码
+            if(mallUser.getPasswordStatus() == 'C' || mallUser.getPasswordStatus() == 'R') {
+                return ServiceResultEnum.NEED_RESET_PASSWORD.getResult();
+            }else {
+                return ServiceResultEnum.SUCCESS.getResult();
+            }
+
+
         }
 
         return ServiceResultEnum.LOGIN_ERROR.getResult();

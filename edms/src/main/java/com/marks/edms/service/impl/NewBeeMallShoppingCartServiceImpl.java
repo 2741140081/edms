@@ -21,7 +21,6 @@ import java.util.function.Function;
 import java.util.stream.Collectors;
 
 @Service
-@DS("mall")
 public class NewBeeMallShoppingCartServiceImpl implements NewBeeMallShoppingCartService {
 
     @Autowired

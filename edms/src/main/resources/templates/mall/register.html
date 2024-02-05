@@ -36,6 +36,9 @@
                                                                                     id="password"
                                                                                     placeholder="请输入你的密码"/>
                     </div>
+                    <div class="login-info">邮&nbsp;&nbsp;&nbsp;&nbsp;箱:&nbsp;<input class="login-info-input" type="email" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$" required name="emailAddress"
+                                                             placeholder="请输入你的邮箱地址" id="emailAddress"/>
+                    </div>
                     <div class="login-info">
                         验证码:&nbsp;
                         <input class="login-info-input verify-code" type="text" name="verifyCode" id="verifyCode"
@@ -74,6 +77,9 @@
             });
             return false;
         }
+        var emailAddress = $("#emailAddress").val();
+
+
         var verifyCode = $("#verifyCode").val();
         if (!validLength(verifyCode, 5)) {
             swal('请输入正确的验证码', {

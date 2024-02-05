@@ -4,8 +4,11 @@ import org.springframework.util.StringUtils;
 
 public class ResultGenerator {
     private  static final String DEFAULT_SUCCESS_MESSAGE = "SUCCESS";
+
+    private  static final String DEFAULT_RESET_PASSWORD_MESSAGE = "RESET_PASSWORD";
     private  static final String DEFAULT_FAIL_MESSAGE = "FAIL";
     private  static final int RESULT_CODE_SUCCESS = 200;
+    private  static final int RESULT_CODE_RESET_PASSWORD = 210;
     private  static final int RESULT_CODE_SERVICE_ERROR = 500;
 
     public static Result genSuccessResult() {
@@ -48,5 +51,11 @@ public class ResultGenerator {
         return result;
     }
 
+    public static Result genResetPasswordResult() {
+        Result<Object> result = new Result<>();
+        result.setResultCode(RESULT_CODE_RESET_PASSWORD);
+        result.setMessage(DEFAULT_RESET_PASSWORD_MESSAGE);
+        return result;
+    }
 
 }

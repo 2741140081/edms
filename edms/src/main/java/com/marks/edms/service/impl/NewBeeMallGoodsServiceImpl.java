@@ -23,7 +23,6 @@ import java.util.List;
 import java.util.Objects;
 
 @Service
-@DS("mall")
 public class NewBeeMallGoodsServiceImpl implements NewBeeMallGoodsService {
 
     @Autowired
