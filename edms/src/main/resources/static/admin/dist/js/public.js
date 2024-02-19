@@ -189,3 +189,18 @@ function getSelectedRows() {
     }
     return grid.getGridParam("selarrrow");
 }
+
+/**
+ * 用户密码验证 验证两次密码输入是否一致
+ *
+ * @param newPassword
+ * @param confirmPassword
+ * @returns {boolean}
+ */
+function checkPassword(newPassword, confirmPassword) {
+    if (newPassword.trim() === confirmPassword.trim()) {
+        return (true);
+    } else {
+        return (false);
+    }
+}

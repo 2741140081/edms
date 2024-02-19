@@ -35,6 +35,11 @@ public class PersonalController {
         return "/mall/reset";
     }
 
+    @GetMapping({"/changeUserPassword", "changeUserPassword.html"})
+    public String changeUserPasswordPage() {
+        return "/mall/changeUserPassword";
+    }
+
 
     @PostMapping("/register")
     @ResponseBody
@@ -155,6 +160,7 @@ public class PersonalController {
         return ResultGenerator.genFailResult(loginResult);
     }
 
+
     @GetMapping("/logout")
     public String logout(HttpSession httpSession) {
         httpSession.removeAttribute(Constants.MALL_USER_SESSION_KEY);
@@ -184,5 +190,36 @@ public class PersonalController {
     @GetMapping("/personal/addresses")
     public String addressesPage() {
         return "mall/addresses";
+    }
+
+
+    @PostMapping("/submitConfirmPassword")
+    @ResponseBody
+    public Result resetPwd(@RequestParam("oldPassword") String oldPassword, @RequestParam("newPassword") String newPassword,
+                                HttpSession httpSession) {
+        /**StringUtils.isEmpty()已经被弃用(deprecated)
+         * 使用StringUtils.hasLength()或者StringUtils.hasText()替代
+         * 区别：hasLength对于空格有效，后者hasText对于空格无效，也就是说纯空格的字符串使用hasText也会返回false
+         */
+        if (!StringUtils.hasText(oldPassword)) {
+            return ResultGenerator.genFailResult(ServiceResultEnum.LOGIN_VERIFY_CODE_NULL.getResult());
+        }
+
+        if (!StringUtils.hasText(newPassword)) {
+            return ResultGenerator.genFailResult(ServiceResultEnum.LOGIN_NAME_NULL.getResult());
+        }
+
+        String registerResult = newBeeMallUserService.updateUserPassword(oldPassword, newPassword, httpSession);
+
+        if (registerResult.equals(ServiceResultEnum.LOGIN_PASSWORD_ERROR.getResult())) {
+            //oldPassword不正确
+            return ResultGenerator.genFailResult(registerResult);
+        }else if (registerResult.equals(ServiceResultEnum.NEW_PASSWORD_REPEAT_ERROR.getResult())) {
+            //newPassword与之前3次password重复
+            return ResultGenerator.genFailResult(registerResult);
+        } else if (registerResult.equals(ServiceResultEnum.SUCCESS.getResult())) {
+            return ResultGenerator.genSuccessResult(registerResult);
+        }
+        return ResultGenerator.genFailResult(registerResult);
     }
 }

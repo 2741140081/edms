@@ -159,4 +159,63 @@ public class NewBeeMallUserServiceImpl implements NewBeeMallUserService {
     public Boolean lockUsers(Long[] ids, int lockStatus) {
         return null;
     }
+
+    /**
+     * @param newPassword
+     * @param httpSession
+     * @return
+     */
+    @Override
+    public String updateUserPassword(String oldPassword, String newPassword, HttpSession httpSession) {
+        NewBeeMallUserVO userTemp = (NewBeeMallUserVO) httpSession.getAttribute(Constants.MALL_USER_SESSION_KEY);
+        MallUser currentUser = userMapper.selectByPrimaryKey(userTemp.getUserId());
+
+        BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
+        if (currentUser != null && httpSession != null) {
+            /**
+             * 判断oldPassword是否与数据库密码一致
+             */
+            boolean matchFlag = encoder.matches(oldPassword, currentUser.getPasswordMd5());
+            if (!matchFlag) {
+                return ServiceResultEnum.LOGIN_PASSWORD_ERROR.getResult();
+            }
+            /**
+             * 加密newPassword，
+             * 判断newPassword是否与数据库中之前3次保存的密码一致，如果一致，则返回ERROR
+             * 保存到数据库中
+             */
+            MallUser registerUser = new MallUser();
+            String encryptedPassword = encoder.encode(newPassword);
+            String oldPassword1 = currentUser.getOldPassword1();
+            String oldPassword2 = currentUser.getOldPassword2();
+            String oldPassword3 = currentUser.getOldPassword3();
+
+            boolean matchFlag1 = encoder.matches(newPassword, oldPassword1);
+            boolean matchFlag2 = encoder.matches(newPassword, oldPassword2);
+            boolean matchFlag3 = encoder.matches(newPassword, oldPassword3);
+
+            if (matchFlag1 || matchFlag2 || matchFlag3) {
+                return ServiceResultEnum.NEW_PASSWORD_REPEAT_ERROR.getResult();
+            }
+
+            currentUser.setPasswordUpdateTime(new Date());
+            currentUser.setPasswordStatus('U');
+            currentUser.setPasswordMd5(encryptedPassword);
+            currentUser.setOldPassword1(encryptedPassword);
+            if (oldPassword1 != null && oldPassword1 != "") {
+                currentUser.setOldPassword2(oldPassword1);
+            }
+
+            if (oldPassword2 != null && oldPassword2 != "") {
+                currentUser.setOldPassword3(oldPassword2);
+            }
+
+            if (userMapper.updateByPrimaryKeySelective(currentUser) > 0) {
+                return ServiceResultEnum.SUCCESS.getResult();
+            }
+
+
+        }
+        return ServiceResultEnum.ERROR.getResult();
+    }
 }

@@ -18,6 +18,8 @@ public enum ServiceResultEnum {
 
     LOGIN_PASSWORD_ERROR("密码输入错误"),
 
+    NEW_PASSWORD_REPEAT_ERROR("新密码与之前密码重复"),
+
     LOGIN_NAME_NULL("请输入登录名！"),
 
     LOGIN_PASSWORD_NULL("请输入密码！"),

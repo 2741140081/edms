@@ -198,6 +198,21 @@
             <if test="createTime != null">
                 create_time = #{createTime,jdbcType=TIMESTAMP},
             </if>
+            <if test="passwordUpdateTime != null">
+                password_update_time = #{passwordUpdateTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="oldPassword1 != null">
+                old_password_1 = #{oldPassword1,jdbcType=VARCHAR},
+            </if>
+            <if test="oldPassword2 != null">
+                old_password_2 = #{oldPassword2,jdbcType=VARCHAR},
+            </if>
+            <if test="oldPassword3 != null">
+                old_password_3 = #{oldPassword3,jdbcType=VARCHAR},
+            </if>
+            <if test="passwordStatus != null">
+                password_status = #{passwordStatus,jdbcType=CHAR},
+            </if>
         </set>
         where user_id = #{userId}
     </update>

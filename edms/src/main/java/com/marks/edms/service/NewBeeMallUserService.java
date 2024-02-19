@@ -48,4 +48,6 @@ public interface NewBeeMallUserService {
      * @return
      */
     Boolean lockUsers(Long[] ids, int lockStatus);
+
+    String updateUserPassword(String oldPassword, String newPassword, HttpSession httpSession);
 }
