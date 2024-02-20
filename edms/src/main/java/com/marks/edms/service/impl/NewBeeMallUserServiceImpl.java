@@ -1,6 +1,5 @@
 package com.marks.edms.service.impl;
 
-import com.baomidou.dynamic.datasource.annotation.DS;
 import com.marks.edms.common.Constants;
 import com.marks.edms.common.ServiceResultEnum;
 import com.marks.edms.controller.vo.NewBeeMallUserVO;
@@ -23,6 +22,7 @@ import java.util.List;
 public class NewBeeMallUserServiceImpl implements NewBeeMallUserService {
     @Autowired
     private MallUserMapper userMapper;
+
     /**
      * 后台分页
      *
@@ -217,5 +217,17 @@ public class NewBeeMallUserServiceImpl implements NewBeeMallUserService {
 
         }
         return ServiceResultEnum.ERROR.getResult();
+    }
+
+    /**
+     * @param pageUtil
+     * @return
+     */
+    @Override
+    public PageResult getNewBeeMallUsersPage(PageQueryUtil pageUtil) {
+        List<MallUser> mallUsers = userMapper.findMallUserList(pageUtil);
+        int total = userMapper.getTotalMallUsers(pageUtil);
+        PageResult pageResult = new PageResult(pageUtil.getPage(), total, pageUtil.getLimit(), mallUsers);
+        return pageResult;
     }
 }
